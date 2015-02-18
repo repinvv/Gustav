@@ -3,36 +3,46 @@
     using System;
     using Gustav.MainLogic;
     using Gustav.Properties;
+    using Gustav.Storage;
 
     internal class Runner
     {
-        private readonly RobotContainer container;
+        private readonly CombatParametersStorage storage;
 
-        public Runner(RobotContainer container)
+        public Runner(CombatParametersStorage storage)
         {
-            this.container = container;
+            this.storage = storage;
         }
 
         public void Run(Loyalist loyalist)
+        {
+            Init(loyalist);
+            while (loyalist.Energy > 0)
+            {
+                var rate = RateDeterminationLogic.DetermineRates();
+                loyalist.TurnRateRadians = rate.BodyTurn;
+                loyalist.GunRotationRateRadians = rate.TurretTurn;
+                loyalist.RadarRotationRateRadians = rate.RadarTurn;
+                if (rate.FirePower > 0) // && Math.Abs(loyalist.GunHeat) < Settings.Default.Tolerance)
+                {
+                    loyalist.SetFire(rate.FirePower);
+                }
+
+                loyalist.Execute();
+            }
+        }
+
+        private void Init(Loyalist loyalist)
         {
             loyalist.GunColor = Settings.Default.GunColor;
             loyalist.RadarColor = Settings.Default.RadarColor;
             loyalist.BodyColor = Settings.Default.BodyColor;
             loyalist.BulletColor = Settings.Default.BulletColor;
-            container.Robot = loyalist;
-            var rate = RateDeterminationLogic.DetermineRates();
-            while (loyalist.Energy > 0)
-            {
-                loyalist.TurnRateRadians = rate.BodyTurn;
-                loyalist.GunRotationRateRadians = rate.TurretTurn;
-                loyalist.RadarRotationRateRadians = rate.RadarTurn;
-                if (Math.Abs(loyalist.GunHeat) < Settings.Default.Tolerance)
-                {
-                    loyalist.SetFire(1);
-                }
-
-                loyalist.Execute();
-            }
+            storage.Robot = loyalist;
+            storage.Combat = new CombatParameters
+                             {
+                                 Mode = CombatMode.Scan
+                             };
         }
     }
 }

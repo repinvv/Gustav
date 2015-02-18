@@ -1,4 +1,4 @@
-﻿namespace Gustav.MainLogic
+﻿namespace Gustav.MathServices
 {
     using System;
 

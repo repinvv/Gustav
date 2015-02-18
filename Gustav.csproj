@@ -44,11 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IoC.cs" />
+    <Compile Include="MainLogic\CombatParameters.cs" />
+    <Compile Include="MainLogic\CombatMode.cs" />
     <Compile Include="MainLogic\RateDeterminationLogic.cs" />
     <Compile Include="MainLogic\Rates.cs" />
-    <Compile Include="MainLogic\MathExtension.cs" />
+    <Compile Include="MathServices\DoublePoint.cs" />
+    <Compile Include="MathServices\MathExtension.cs" />
     <Compile Include="Loyalist.cs" />
-    <Compile Include="Container.cs" />
+    <Compile Include="Storage\CombatParametersStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -56,10 +59,11 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Resolver.cs" />
-    <Compile Include="RobotPosition\CoordinatesCalculator.cs" />
-    <Compile Include="RobotPosition\RobotPositionStorage.cs" />
+    <Compile Include="MathServices\CoordinatesCalculator.cs" />
+    <Compile Include="Position\EnemyData.cs" />
+    <Compile Include="Storage\EnemyDataStorage.cs" />
     <Compile Include="Runner.cs" />
-    <Compile Include="RobotPosition\PositionRegister.cs" />
+    <Compile Include="Position\PositionRegister.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

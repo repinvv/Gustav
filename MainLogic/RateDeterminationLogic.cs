@@ -1,5 +1,7 @@
 ﻿namespace Gustav.MainLogic
 {
+    using Gustav.MathServices;
+
     internal static class RateDeterminationLogic
     {
         public static Rates DetermineRates()

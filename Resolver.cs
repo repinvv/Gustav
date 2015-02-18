@@ -1,7 +1,7 @@
 ﻿namespace Gustav
 {
     using System.Linq;
-    using Gustav.RobotPosition;
+    using Gustav.Storage;
 
     internal class Resolver
     {
@@ -10,8 +10,8 @@
         public Resolver()
         {
             GetType().Assembly.GetTypes().ToList().ForEach(x=> ioc.Register(x));
-            ioc.RegisterSingleton<RobotPositionStorage>();
-            ioc.RegisterSingleton<RobotContainer>();
+            ioc.RegisterSingleton<EnemyDataStorage>();
+            ioc.RegisterSingleton<CombatParametersStorage>();
         }
 
         public T Get<T>()

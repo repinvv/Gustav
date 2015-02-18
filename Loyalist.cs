@@ -1,18 +1,23 @@
 ﻿namespace Gustav
 {
-    using Gustav.RobotPosition;
+    using System.Runtime.InteropServices;
+    using Gustav.Position;
     using Robocode;
 
     public class Loyalist : RateControlRobot
     {
+        private PositionRegister positionRegister;
+
         public override void Run()
         {
-            new Resolver().Get<Runner>().Run(this);
+            var resolver = new Resolver();
+            positionRegister = resolver.Get<PositionRegister>();
+            resolver.Get<Runner>().Run(this);
         }
 
         public override void OnScannedRobot(ScannedRobotEvent e)
         {
-            PositionRegister.OnScan(e);
+            positionRegister.OnScan(e);
         }
     }
 }
