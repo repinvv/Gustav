@@ -4,15 +4,22 @@
     using Gustav.MainLogic;
     using Gustav.Properties;
 
-    internal static class Runner
+    internal class Runner
     {
-        public static void Run(Loyalist loyalist)
+        private readonly RobotContainer container;
+
+        public Runner(RobotContainer container)
+        {
+            this.container = container;
+        }
+
+        public void Run(Loyalist loyalist)
         {
             loyalist.GunColor = Settings.Default.GunColor;
             loyalist.RadarColor = Settings.Default.RadarColor;
             loyalist.BodyColor = Settings.Default.BodyColor;
             loyalist.BulletColor = Settings.Default.BulletColor;
-            RobotContainer.Robot = loyalist;
+            container.Robot = loyalist;
             var rate = RateDeterminationLogic.DetermineRates();
             while (loyalist.Energy > 0)
             {

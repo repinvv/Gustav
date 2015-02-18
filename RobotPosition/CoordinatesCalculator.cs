@@ -4,11 +4,18 @@
 
     internal class CoordinatesCalculator
     {
+        private readonly RobotContainer container;
+
+        public CoordinatesCalculator(RobotContainer container)
+        {
+            this.container = container;
+        }
+
         public Point GetEnemyCoordinates(double distance, double bearing)
         {
-            var x = RobotContainer.Robot.X;
-            var y = RobotContainer.Robot.Y;
-            var heading = RobotContainer.Robot.RadarHeadingRadians;
+            var x = container.Robot.X;
+            var y = container.Robot.Y;
+            var heading = container.Robot.RadarHeadingRadians;
             return new Point();
         }
     }

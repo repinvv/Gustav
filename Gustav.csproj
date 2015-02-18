@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IoC.cs" />
     <Compile Include="MainLogic\RateDeterminationLogic.cs" />
     <Compile Include="MainLogic\Rates.cs" />
     <Compile Include="MainLogic\MathExtension.cs" />
@@ -54,6 +55,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Resolver.cs" />
     <Compile Include="RobotPosition\CoordinatesCalculator.cs" />
     <Compile Include="RobotPosition\RobotPositionStorage.cs" />
     <Compile Include="Runner.cs" />

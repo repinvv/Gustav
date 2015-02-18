@@ -1,7 +1,7 @@
 ﻿namespace Gustav
 {
-    internal static class RobotContainer
+    internal class RobotContainer
     {
-        public static Loyalist Robot { get; set; }
+        public Loyalist Robot { get; set; }
     }
 }

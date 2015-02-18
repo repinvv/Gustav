@@ -7,7 +7,7 @@
     {
         public override void Run()
         {
-            Runner.Run(this);
+            new Resolver().Get<Runner>().Run(this);
         }
 
         public override void OnScannedRobot(ScannedRobotEvent e)
