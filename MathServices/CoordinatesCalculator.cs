@@ -12,12 +12,22 @@
             this.storage = storage;
         }
 
-        public DoublePoint GetEnemyCoordinates(double distance, double bearing)
+        public DoublePoint GetCoordinatesByAngle(double distance, double angle)
         {
-            var x = Math.Cos(bearing) * distance + storage.Robot.X;
-            var y = Math.Sin(bearing) * distance + storage.Robot.Y;
+            var x = Math.Cos(angle) * distance + storage.Robot.X;
+            var y = Math.Sin(angle) * distance + storage.Robot.Y;
 
-            return new DoublePoint(x, y);
+            return new DoublePoint(x.ToDegrees(), y.ToDegrees());
+        }
+
+        public double GetBearingToCoordinates(double x, double y)
+        {
+            return Math.Atan2(x - storage.Robot.X, y - storage.Robot.Y).ToDegrees();
+        }
+
+        public double GetBearingDiff(double bearing, double heading)
+        {
+            return (((((bearing - heading) % 360) + 540) % 360) - 180);
         }
     }
 }

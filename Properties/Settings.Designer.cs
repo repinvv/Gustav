@@ -76,5 +76,53 @@ namespace Gustav.Properties {
                 this["Tolerance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public double MaxTurn {
+            get {
+                return ((double)(this["MaxTurn"]));
+            }
+            set {
+                this["MaxTurn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
+        public double MaxTurretTurn {
+            get {
+                return ((double)(this["MaxTurretTurn"]));
+            }
+            set {
+                this["MaxTurretTurn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("45")]
+        public double MaxRadarTurn {
+            get {
+                return ((double)(this["MaxRadarTurn"]));
+            }
+            set {
+                this["MaxRadarTurn"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public long ScanExpiration {
+            get {
+                return ((long)(this["ScanExpiration"]));
+            }
+            set {
+                this["ScanExpiration"] = value;
+            }
+        }
     }
 }

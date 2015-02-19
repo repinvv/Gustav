@@ -22,7 +22,7 @@
                 return;
             }
             
-            var point = coordinatesCalculator.GetEnemyCoordinates(e.Distance, e.BearingRadians);
+            var point = coordinatesCalculator.GetCoordinatesByAngle(e.Distance, e.BearingRadians);
             storage.StoreEnemy(new EnemyData
                                {
                                    Position = point,

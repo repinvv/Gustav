@@ -1,19 +1,46 @@
 ﻿namespace Gustav.MainLogic
 {
-    using Gustav.MathServices;
+    using System;
+    using Gustav.Storage;
 
-    internal static class RateDeterminationLogic
+    internal class RateDeterminationLogic
     {
-        public static Rates DetermineRates()
+        private readonly ScanLogic scanLogic;
+        private readonly CombatParametersStorage storage;
+
+        public RateDeterminationLogic(ScanLogic scanLogic, CombatParametersStorage storage)
         {
-            var turn = 10.ToRadians();
-            return new Rates
-                   {
-                       BodyTurn = turn,
-                       TurretTurn = -turn,
-                       RadarTurn = 45.ToRadians(),
-                       FirePower = 0
-                   };
+            this.scanLogic = scanLogic;
+            this.storage = storage;
+        }
+
+        public Rates DetermineRates()
+        {
+            Rates rates = null;
+            while (rates == null)
+            {
+                rates = GetRates();
+            }
+
+            return rates;
+        }
+
+        private Rates GetRates()
+        {
+            switch (storage.CombatMode)
+            {
+                case CombatMode.Scan:
+                    storage.Robot.Out.WriteLine("Scan mode");
+                    return scanLogic.DetermineRates();
+                case CombatMode.Engage:
+                    storage.Robot.Out.WriteLine("Engage mode");
+                    return null;
+                case CombatMode.Search:
+                    storage.Robot.Out.WriteLine("Search mode");
+                    return null;
+                default:
+                    throw new Exception("wtf?");
+            }
         }
     }
 }

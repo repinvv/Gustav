@@ -1,6 +1,5 @@
 ﻿namespace Gustav
 {
-    using System;
     using Gustav.MainLogic;
     using Gustav.Properties;
     using Gustav.Storage;
@@ -8,10 +7,12 @@
     internal class Runner
     {
         private readonly CombatParametersStorage storage;
+        private readonly RateDeterminationLogic rateDeterminationLogic;
 
-        public Runner(CombatParametersStorage storage)
+        public Runner(CombatParametersStorage storage, RateDeterminationLogic rateDeterminationLogic)
         {
             this.storage = storage;
+            this.rateDeterminationLogic = rateDeterminationLogic;
         }
 
         public void Run(Loyalist loyalist)
@@ -19,10 +20,10 @@
             Init(loyalist);
             while (loyalist.Energy > 0)
             {
-                var rate = RateDeterminationLogic.DetermineRates();
-                loyalist.TurnRateRadians = rate.BodyTurn;
-                loyalist.GunRotationRateRadians = rate.TurretTurn;
-                loyalist.RadarRotationRateRadians = rate.RadarTurn;
+                var rate = rateDeterminationLogic.DetermineRates();
+                loyalist.TurnRate = rate.BodyTurn;
+                loyalist.GunRotationRate = rate.TurretTurn;
+                loyalist.RadarRotationRate = rate.RadarTurn;
                 if (rate.FirePower > 0) // && Math.Abs(loyalist.GunHeat) < Settings.Default.Tolerance)
                 {
                     loyalist.SetFire(rate.FirePower);
@@ -39,10 +40,7 @@
             loyalist.BodyColor = Settings.Default.BodyColor;
             loyalist.BulletColor = Settings.Default.BulletColor;
             storage.Robot = loyalist;
-            storage.Combat = new CombatParameters
-                             {
-                                 Mode = CombatMode.Scan
-                             };
+            storage.CombatMode = CombatMode.Scan;
         }
     }
 }

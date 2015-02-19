@@ -17,5 +17,17 @@
     <Setting Name="Tolerance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.01</Value>
     </Setting>
+    <Setting Name="MaxTurn" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="MaxTurretTurn" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">20</Value>
+    </Setting>
+    <Setting Name="MaxRadarTurn" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">45</Value>
+    </Setting>
+    <Setting Name="ScanExpiration" Type="System.Int64" Scope="User">
+      <Value Profile="(Default)">5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

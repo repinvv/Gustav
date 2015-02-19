@@ -44,10 +44,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IoC.cs" />
-    <Compile Include="MainLogic\CombatParameters.cs" />
+    <Compile Include="MainLogic\ScanParameters.cs" />
     <Compile Include="MainLogic\CombatMode.cs" />
     <Compile Include="MainLogic\RateDeterminationLogic.cs" />
     <Compile Include="MainLogic\Rates.cs" />
+    <Compile Include="MainLogic\ScanLogic.cs" />
     <Compile Include="MathServices\DoublePoint.cs" />
     <Compile Include="MathServices\MathExtension.cs" />
     <Compile Include="Loyalist.cs" />

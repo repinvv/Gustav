@@ -4,6 +4,6 @@
     {
         Scan,
         Search,
-        Combat
+        Engage
     }
 }

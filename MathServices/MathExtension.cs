@@ -13,5 +13,10 @@
         {
             return ((double)angle).ToRadians();
         }
+
+        public static double ToDegrees(this double angle)
+        {
+            return 180.0 * angle / Math.PI;
+        }
     }
 }
