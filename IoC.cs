@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Reflection;
 
     public class IoC
     {
@@ -10,12 +11,12 @@
 
         public void Register<TType>() where TType : class
         {
-            Register<TType, TType>(false, null);
+            Register(typeof(TType), typeof(TType));
         }
 
         public void Register<TType, TConcrete>() where TConcrete : class, TType
         {
-            Register<TType, TConcrete>(false, null);
+            Register(typeof(TType), typeof(TConcrete));
         }
 
         public void RegisterSingleton<TType>() where TType : class
@@ -25,7 +26,7 @@
 
         public void RegisterSingleton<TType, TConcrete>() where TConcrete : class, TType
         {
-            Register<TType, TConcrete>(true, null);
+            RegisterInstance<TType, TConcrete>(null);
         }
 
         public void RegisterInstance<TType>(TType instance) where TType : class
@@ -35,86 +36,66 @@
 
         public void RegisterInstance<TType, TConcrete>(TConcrete instance) where TConcrete : class, TType
         {
-            Register<TType, TConcrete>(true, instance);
+            registeredObjects[typeof(TType)] = new Singleton(this, typeof(TConcrete), instance);
         }
 
         public TTypeToResolve Resolve<TTypeToResolve>()
         {
-            return (TTypeToResolve)ResolveObject(typeof(TTypeToResolve));
+            return (TTypeToResolve)Resolve(typeof(TTypeToResolve));
         }
 
         public object Resolve(Type type)
-        {
-            return ResolveObject(type);
-        }
-
-        private void Register<TType, TConcrete>(bool isSingleton, TConcrete instance)
-        {
-            Type type = typeof(TType);
-            registeredObjects[type] = new RegisteredObject(typeof(TConcrete), isSingleton, instance);
-        }
-
-        public void Register(Type type, Type concrete)
-        {
-            registeredObjects[type] = new RegisteredObject(concrete, false, null);
-        }
-
-        public void Register(Type type)
-        {
-            registeredObjects[type] = new RegisteredObject(type, false, null);
-        }
-
-        private object ResolveObject(Type type)
         {
             RegisteredObject registeredObject;
             if (!registeredObjects.TryGetValue(type, out registeredObject))
             {
                 throw new ArgumentOutOfRangeException(string.Format("The type {0} has not been registered", type.Name));
             }
-
-            return GetInstance(registeredObject);
+            return registeredObject.CreateInstance();
         }
 
-        private object GetInstance(RegisteredObject registeredObject)
+        public void Register(Type type, Type concrete)
         {
-            if (registeredObject.SingletonInstance != null)
-            {
-                return registeredObject.SingletonInstance;
-            }
-
-            var parameters = ResolveConstructorParameters(registeredObject);
-            return registeredObject.CreateInstance(parameters.ToArray());
+            registeredObjects[type] = new RegisteredObject(this, concrete);
         }
 
-        private IEnumerable<object> ResolveConstructorParameters(RegisteredObject registeredObject)
+        public void Register(Type type)
         {
-            var constructorInfo = registeredObject.ConcreteType.GetConstructors().First();
-            return constructorInfo.GetParameters().Select(parameter => ResolveObject(parameter.ParameterType));
+            Register(type, type);
         }
 
         private class RegisteredObject
         {
-            private readonly bool isSinglton;
+            private readonly IoC ioc;
+            private readonly Type concreteType;
+            private readonly ParameterInfo[] constructorParams;
 
-            public RegisteredObject(Type concreteType, bool isSingleton, object instance)
+            public RegisteredObject(IoC ioc, Type concreteType)
             {
-                isSinglton = isSingleton;
-                ConcreteType = concreteType;
-                SingletonInstance = instance;
+                this.ioc = ioc;
+                this.concreteType = concreteType;
+                var constructorInfo = concreteType.GetConstructors().FirstOrDefault();
+                constructorParams = constructorInfo == null ? new ParameterInfo[0] : constructorInfo.GetParameters();
             }
 
-            public Type ConcreteType { get; private set; }
-            public object SingletonInstance { get; private set; }
-
-            public object CreateInstance(params object[] args)
+            public virtual object CreateInstance()
             {
-                object instance = Activator.CreateInstance(ConcreteType, args);
-                if (isSinglton)
-                {
-                    SingletonInstance = instance;
-                }
+                return Activator.CreateInstance(concreteType, constructorParams.Select(parameter => ioc.Resolve(parameter.ParameterType)).ToArray());
+            }
+        }
 
-                return instance;
+        private class Singleton : RegisteredObject
+        {
+            private object instance;
+
+            public Singleton(IoC ioc, Type concreteType, object instance): base(ioc, concreteType)
+            {
+                this.instance = instance;
+            }
+
+            public override object CreateInstance()
+            {
+                return instance = instance ?? base.CreateInstance();
             }
         }
     }
