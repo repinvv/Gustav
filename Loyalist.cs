@@ -1,6 +1,5 @@
 ﻿namespace Gustav
 {
-    using System.Runtime.InteropServices;
     using Gustav.Position;
     using Robocode;
 

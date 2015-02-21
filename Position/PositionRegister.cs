@@ -27,6 +27,7 @@
                                {
                                    Position = point,
                                    Name = e.Name,
+                                   Distance = e.Distance,
                                    Heading = e.HeadingRadians,
                                    Velocity = e.Velocity,
                                    Energy = e.Energy,

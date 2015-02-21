@@ -20,7 +20,7 @@
 
         public Rates DetermineRates()
         {
-            var scan = storage.ScanParameters ?? GetScanParameters();
+            var scan = GetScanParameters();
             if (enemyDataStorage.HaveActiveEnemy())
             {
                 storage.CombatMode = CombatMode.Engage;
@@ -58,12 +58,17 @@
 
         private ScanParameters GetScanParameters()
         {
+            if (storage.ScanParameters != null)
+            {
+                return storage.ScanParameters;
+            }
+
             var centerBearing = coordinatesCalculator.GetBearingToCoordinates(storage.Robot.BattleFieldWidth / 2, storage.Robot.BattleFieldHeight / 2);
             var diff = coordinatesCalculator.GetBearingDiff(centerBearing, storage.Robot.Heading);
             var clockwize = diff > 0;
             var target = (storage.Robot.Heading + (clockwize ? 179 : -179)) % 360;
 
-            var scan = new ScanParameters
+            var scan = storage.ScanParameters = new ScanParameters
                        {
                            Clockwize = clockwize,
                            Stage = 0,

@@ -44,6 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IoC.cs" />
+    <Compile Include="MainLogic\Engage\CurrentEnemySelection.cs" />
+    <Compile Include="MainLogic\Engage\EngageLogic.cs" />
+    <Compile Include="MainLogic\Engage\MovementLogic.cs" />
+    <Compile Include="MainLogic\Engage\ScanHoldLogic.cs" />
+    <Compile Include="MainLogic\Engage\TargettingLogic.cs" />
+    <Compile Include="MainLogic\Engage\EngageParameters.cs" />
     <Compile Include="MainLogic\ScanParameters.cs" />
     <Compile Include="MainLogic\CombatMode.cs" />
     <Compile Include="MainLogic\RateDeterminationLogic.cs" />

@@ -2,6 +2,8 @@
 {
     internal class Rates
     {
+        public double Velocity { get; set; }
+
         public double BodyTurn { get; set; }
 
         public double TurretTurn { get; set; }

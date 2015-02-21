@@ -10,6 +10,7 @@
         private readonly CombatParametersStorage storage;
         readonly object sync = new object();
         readonly Dictionary<string, EnemyData> enemies = new Dictionary<string, EnemyData>();
+        readonly Dictionary<string, EnemyData> previousData = new Dictionary<string, EnemyData>();
 
         public EnemyDataStorage(CombatParametersStorage storage)
         {
@@ -20,6 +21,12 @@
         {
             lock (sync)
             {
+                EnemyData previous;
+                if (enemies.TryGetValue(enemyData.Name, out previous))
+                {
+                    previousData[enemyData.Name] = previous;
+                }
+
                 enemies[enemyData.Name] = enemyData;
             }
         }
@@ -28,7 +35,8 @@
         {
             lock (sync)
             {
-                return enemies[name];
+                var enemy = enemies[name];
+                return NotExpired(enemy) ? enemy : null;
             }
         }
 
@@ -36,8 +44,21 @@
         {
             lock (sync)
             {
-                return enemies.Values.Any(x => storage.Robot.Time - x.LastSeen < Settings.Default.ScanExpiration);
+                return enemies.Values.Any(NotExpired);
             }
+        }
+
+        public List<EnemyData> GetAvailableEnemies()
+        {
+            lock (sync)
+            {
+                return enemies.Values.Where(NotExpired).ToList();
+            }
+        }
+
+        private bool NotExpired(EnemyData data)
+        {
+            return storage.Robot.Time - data.LastSeen < Settings.Default.ScanExpiration;
         }
     }
 }

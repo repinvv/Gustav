@@ -8,6 +8,8 @@
 
         public DoublePoint Position { get; set; }
 
+        public double Distance { get; set; }
+
         public double Heading { get; set; }
 
         public double Velocity { get; set; }
