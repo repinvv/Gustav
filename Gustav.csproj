@@ -44,12 +44,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IoC.cs" />
+    <Compile Include="MainLogic\Engage\BulletPowerCalculator.cs" />
     <Compile Include="MainLogic\Engage\CurrentEnemySelection.cs" />
     <Compile Include="MainLogic\Engage\EngageLogic.cs" />
     <Compile Include="MainLogic\Engage\MovementLogic.cs" />
     <Compile Include="MainLogic\Engage\ScanHoldLogic.cs" />
     <Compile Include="MainLogic\Engage\TargettingLogic.cs" />
     <Compile Include="MainLogic\Engage\EngageParameters.cs" />
+    <Compile Include="MainLogic\Engage\TurretHeadingCalculator.cs" />
     <Compile Include="MainLogic\ScanParameters.cs" />
     <Compile Include="MainLogic\CombatMode.cs" />
     <Compile Include="MainLogic\RateDeterminationLogic.cs" />
@@ -66,7 +68,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Resolver.cs" />
-    <Compile Include="MathServices\CoordinatesCalculator.cs" />
+    <Compile Include="MathServices\AnglesCalculator.cs" />
     <Compile Include="Position\EnemyData.cs" />
     <Compile Include="Storage\EnemyDataStorage.cs" />
     <Compile Include="Runner.cs" />

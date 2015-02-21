@@ -67,54 +67,6 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.01")]
-        public double Tolerance {
-            get {
-                return ((double)(this["Tolerance"]));
-            }
-            set {
-                this["Tolerance"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public double MaxTurn {
-            get {
-                return ((double)(this["MaxTurn"]));
-            }
-            set {
-                this["MaxTurn"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("20")]
-        public double MaxTurretTurn {
-            get {
-                return ((double)(this["MaxTurretTurn"]));
-            }
-            set {
-                this["MaxTurretTurn"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("45")]
-        public double MaxRadarTurn {
-            get {
-                return ((double)(this["MaxRadarTurn"]));
-            }
-            set {
-                this["MaxRadarTurn"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("5")]
         public long ScanExpiration {
             get {
@@ -122,6 +74,90 @@ namespace Gustav.Properties {
             }
             set {
                 this["ScanExpiration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public double MaxPowerDistance {
+            get {
+                return ((double)(this["MaxPowerDistance"]));
+            }
+            set {
+                this["MaxPowerDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public double MaxPower {
+            get {
+                return ((double)(this["MaxPower"]));
+            }
+            set {
+                this["MaxPower"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.3")]
+        public double MinPower {
+            get {
+                return ((double)(this["MinPower"]));
+            }
+            set {
+                this["MinPower"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public double DistanceRate {
+            get {
+                return ((double)(this["DistanceRate"]));
+            }
+            set {
+                this["DistanceRate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        public double TargettingTolerance {
+            get {
+                return ((double)(this["TargettingTolerance"]));
+            }
+            set {
+                this["TargettingTolerance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.001")]
+        public double ComparisionTolerance {
+            get {
+                return ((double)(this["ComparisionTolerance"]));
+            }
+            set {
+                this["ComparisionTolerance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public double ScanArc {
+            get {
+                return ((double)(this["ScanArc"]));
+            }
+            set {
+                this["ScanArc"] = value;
             }
         }
     }

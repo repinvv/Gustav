@@ -24,9 +24,9 @@
                 loyalist.TurnRate = rate.BodyTurn;
                 loyalist.GunRotationRate = rate.TurretTurn;
                 loyalist.RadarRotationRate = rate.RadarTurn;
-                if (rate.FirePower > 0) // && Math.Abs(loyalist.GunHeat) < Settings.Default.Tolerance)
+                if (rate.BulletPower > 0)
                 {
-                    loyalist.SetFire(rate.FirePower);
+                    loyalist.SetFire(rate.BulletPower);
                 }
 
                 loyalist.Execute();

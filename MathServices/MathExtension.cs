@@ -18,5 +18,15 @@
         {
             return 180.0 * angle / Math.PI;
         }
+
+        public static double AddAngle(this double angle, double add)
+        {
+            return (angle + add) % 360;
+        }
+
+        public static double Sin(this double angle)
+        {
+            return Math.Sin(angle.ToRadians());
+        }
     }
 }

@@ -3,21 +3,21 @@
     using System;
     using Gustav.Storage;
 
-    internal class CoordinatesCalculator
+    internal class AnglesCalculator
     {
         private readonly CombatParametersStorage storage;
 
-        public CoordinatesCalculator(CombatParametersStorage storage)
+        public AnglesCalculator(CombatParametersStorage storage)
         {
             this.storage = storage;
         }
 
         public DoublePoint GetCoordinatesByAngle(double distance, double angle)
         {
-            var x = Math.Cos(angle) * distance + storage.Robot.X;
-            var y = Math.Sin(angle) * distance + storage.Robot.Y;
-
-            return new DoublePoint(x.ToDegrees(), y.ToDegrees());
+            var rangle = angle.ToRadians();
+            var x = Math.Cos(rangle) * distance + storage.Robot.X;
+            var y = Math.Sin(rangle) * distance + storage.Robot.Y;
+            return new DoublePoint(x, y);
         }
 
         public double GetBearingToCoordinates(double x, double y)

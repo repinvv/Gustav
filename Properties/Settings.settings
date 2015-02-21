@@ -14,20 +14,29 @@
     <Setting Name="BulletColor" Type="System.Drawing.Color" Scope="User">
       <Value Profile="(Default)">GreenYellow</Value>
     </Setting>
-    <Setting Name="Tolerance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.01</Value>
-    </Setting>
-    <Setting Name="MaxTurn" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">10</Value>
-    </Setting>
-    <Setting Name="MaxTurretTurn" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">20</Value>
-    </Setting>
-    <Setting Name="MaxRadarTurn" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">45</Value>
-    </Setting>
     <Setting Name="ScanExpiration" Type="System.Int64" Scope="User">
       <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="MaxPowerDistance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">50</Value>
+    </Setting>
+    <Setting Name="MaxPower" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">3</Value>
+    </Setting>
+    <Setting Name="MinPower" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.3</Value>
+    </Setting>
+    <Setting Name="DistanceRate" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">100</Value>
+    </Setting>
+    <Setting Name="TargettingTolerance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">6</Value>
+    </Setting>
+    <Setting Name="ComparisionTolerance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.001</Value>
+    </Setting>
+    <Setting Name="ScanArc" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">15</Value>
     </Setting>
   </Settings>
 </SettingsFile>

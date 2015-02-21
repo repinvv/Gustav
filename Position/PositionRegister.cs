@@ -6,12 +6,12 @@
 
     internal class PositionRegister
     {
-        private readonly CoordinatesCalculator coordinatesCalculator;
+        private readonly AnglesCalculator anglesCalculator;
         private readonly EnemyDataStorage storage;
 
-        public PositionRegister(CoordinatesCalculator coordinatesCalculator, EnemyDataStorage storage)
+        public PositionRegister(AnglesCalculator anglesCalculator, EnemyDataStorage storage)
         {
-            this.coordinatesCalculator = coordinatesCalculator;
+            this.anglesCalculator = anglesCalculator;
             this.storage = storage;
         }
 
@@ -22,7 +22,7 @@
                 return;
             }
             
-            var point = coordinatesCalculator.GetCoordinatesByAngle(e.Distance, e.BearingRadians);
+            var point = anglesCalculator.GetCoordinatesByAngle(e.Distance, e.Bearing);
             storage.StoreEnemy(new EnemyData
                                {
                                    Position = point,

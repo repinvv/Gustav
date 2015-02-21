@@ -10,6 +10,6 @@
 
         public double RadarTurn { get; set; }
 
-        public int FirePower { get; set; }
+        public double BulletPower { get; set; }
     }
 }
