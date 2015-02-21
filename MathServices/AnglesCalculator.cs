@@ -14,15 +14,15 @@
 
         public DoublePoint GetCoordinatesByAngle(double distance, double angle)
         {
-            var rangle = angle.ToRadians();
-            var x = Math.Cos(rangle) * distance + storage.Robot.X;
-            var y = Math.Sin(rangle) * distance + storage.Robot.Y;
+            angle = angle.NormalizeAngle();
+            var x = angle.Sin() * distance + storage.Robot.X;
+            var y = angle.Cos() * distance + storage.Robot.Y;
             return new DoublePoint(x, y);
         }
 
         public double GetBearingToCoordinates(double x, double y)
         {
-            return Math.Atan2(x - storage.Robot.X, y - storage.Robot.Y).ToDegrees();
+            return Math.Atan2(x - storage.Robot.X, y - storage.Robot.Y).ToDegrees().NormalizeAngle();
         }
 
         public double GetBearingDiff(double bearing, double heading)

@@ -11,6 +11,7 @@
         private readonly EnemyDataStorage enemyDataStorage;
         private readonly CombatParametersStorage storage;
         private readonly BulletPowerCalculator bulletPowerCalculator;
+        private readonly ModeSelector modeSelector;
 
         public EngageLogic(MovementLogic movement,
             TargettingLogic targettingLogic,
@@ -18,7 +19,8 @@
             CurrentEnemySelection enemySelection, 
             EnemyDataStorage enemyDataStorage,
             CombatParametersStorage storage,
-            BulletPowerCalculator bulletPowerCalculator)
+            BulletPowerCalculator bulletPowerCalculator, 
+            ModeSelector modeSelector)
         {
             this.movement = movement;
             this.targettingLogic = targettingLogic;
@@ -27,6 +29,7 @@
             this.enemyDataStorage = enemyDataStorage;
             this.storage = storage;
             this.bulletPowerCalculator = bulletPowerCalculator;
+            this.modeSelector = modeSelector;
         }
 
         public Rates DetermineRates()
@@ -35,7 +38,7 @@
             var enemy = enemyDataStorage.GetEnemy(targetting.CurrentEnemy);
             if (enemy == null)
             {
-                storage.CombatMode = CombatMode.Scan;
+                modeSelector.SelectMode(CombatMode.Scan);
                 return null;
             }
 

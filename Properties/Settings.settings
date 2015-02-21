@@ -18,7 +18,7 @@
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="MaxPowerDistance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">50</Value>
+      <Value Profile="(Default)">91</Value>
     </Setting>
     <Setting Name="MaxPower" Type="System.Double" Scope="User">
       <Value Profile="(Default)">3</Value>
@@ -27,7 +27,7 @@
       <Value Profile="(Default)">0.3</Value>
     </Setting>
     <Setting Name="DistanceRate" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">100</Value>
+      <Value Profile="(Default)">110</Value>
     </Setting>
     <Setting Name="TargettingTolerance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">6</Value>

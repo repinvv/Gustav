@@ -4,7 +4,6 @@
     using Gustav.Position;
     using Gustav.Properties;
     using Gustav.Storage;
-    using Robocode;
 
     class BulletPowerCalculator
     {
@@ -19,7 +18,7 @@
         {
             var reduction = (enemy.Distance - Settings.Default.MaxPowerDistance)/Settings.Default.DistanceRate;
             var power = Settings.Default.MaxPower - reduction;
-            power = Math.Min(power, Settings.Default.MinPower);
+            power = Math.Max(power, Settings.Default.MinPower);
             storage.Engage.BulletPower = power;
         }
     }

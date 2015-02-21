@@ -49,7 +49,7 @@
 
         private EnemyData GetPreferrableEnemy()
         {
-            return enemyDataStorage.GetAvailableEnemies().OrderBy(GetTargetPriority).First();
+            return enemyDataStorage.GetAvailableEnemies().OrderBy(GetTargetPriority).FirstOrDefault();
         }
 
         private double GetTargetPriority(EnemyData enemyData)

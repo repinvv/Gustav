@@ -6,6 +6,6 @@
 
         public int Stage { get; set; }
 
-        public double TargetBearing { get; set; }
+        public double TargetHeading { get; set; }
     }
 }

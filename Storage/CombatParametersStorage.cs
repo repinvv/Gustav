@@ -9,8 +9,10 @@
 
         public CombatMode CombatMode { get; set; }
 
-        public ScanParameters ScanParameters { get; set; }
+        public ScanParameters Scan { get; set; }
 
         public EngageParameters  Engage { get; set; }
+
+        public bool CombatEnded { get; set; }
     }
 }

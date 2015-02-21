@@ -9,12 +9,14 @@
         private readonly ScanLogic scanLogic;
         private readonly CombatParametersStorage storage;
         private readonly EngageLogic engageLogic;
+        private readonly ModeSelector modeSelector;
 
-        public RateDeterminationLogic(ScanLogic scanLogic, CombatParametersStorage storage, EngageLogic engageLogic)
+        public RateDeterminationLogic(ScanLogic scanLogic, CombatParametersStorage storage, EngageLogic engageLogic, ModeSelector modeSelector)
         {
             this.scanLogic = scanLogic;
             this.storage = storage;
             this.engageLogic = engageLogic;
+            this.modeSelector = modeSelector;
         }
 
         public Rates DetermineRates()
@@ -33,14 +35,11 @@
             switch (storage.CombatMode)
             {
                 case CombatMode.Scan:
-                    storage.Robot.Out.WriteLine("Scan mode");
                     return scanLogic.DetermineRates();
                 case CombatMode.Engage:
-                    storage.Robot.Out.WriteLine("Engage mode");
-                    return null;
-                case CombatMode.Search:
-                    storage.Robot.Out.WriteLine("Search mode");
                     return engageLogic.DetermineRates();
+                case CombatMode.Search:
+                    modeSelector.SelectMode(CombatMode.Scan);
                     return null;
                 default:
                     throw new Exception("wtf?");

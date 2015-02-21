@@ -60,5 +60,11 @@
         {
             return storage.Robot.Time - data.LastSeen < Settings.Default.ScanExpiration;
         }
+
+        public void Clear()
+        {
+            enemies.Clear();
+            previousData.Clear();
+        }
     }
 }

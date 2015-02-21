@@ -24,10 +24,14 @@
         {
             var currentHeading = turretHeadingCalculator.GetCurrentTurnHeading(enemy);
             var diff = anglesCalculator.GetBearingDiff(currentHeading, storage.Robot.GunHeading);
-            var miss = diff.Sin() * enemy.Distance;
+            var miss = Math.Abs(diff.Sin() * enemy.Distance);
             if (miss < Settings.Default.TargettingTolerance && Math.Abs(storage.Robot.GunHeat) < Settings.Default.ComparisionTolerance)
             {
                 rates.BulletPower = storage.Engage.BulletPower;
+            }
+            else
+            {
+                rates.BulletPower = 0;
             }
 
             var nextHeading = turretHeadingCalculator.GetNextTurnHeading(enemy);
@@ -49,7 +53,7 @@
         {
             if (neededRate >= -Rules.GUN_TURN_RATE)
             {
-                rates.RadarTurn = neededRate;
+                rates.TurretTurn = neededRate;
                 return;
             }
 
@@ -59,7 +63,7 @@
                 rates.Velocity = rates.Velocity / 2;
             }
 
-            rates.BodyTurn = Math.Min(rates.BodyTurn.AddAngle(bodyAdjust), -Rules.MAX_TURN_RATE);
+            rates.BodyTurn = Math.Max(rates.BodyTurn.AddAngle(bodyAdjust), -Rules.MAX_TURN_RATE);
             rates.TurretTurn = -Rules.GUN_TURN_RATE;
         }
 
@@ -67,7 +71,7 @@
         {
             if (neededRate <= Rules.GUN_TURN_RATE)
             {
-                rates.RadarTurn = neededRate;
+                rates.TurretTurn = neededRate;
                 return;
             }
 
@@ -77,7 +81,7 @@
                 rates.Velocity = rates.Velocity / 2;
             }
 
-            rates.BodyTurn = Math.Max(rates.BodyTurn.AddAngle(bodyAdjust), Rules.MAX_TURN_RATE);
+            rates.BodyTurn = Math.Min(rates.BodyTurn.AddAngle(bodyAdjust), Rules.MAX_TURN_RATE);
             rates.TurretTurn = Rules.GUN_TURN_RATE;
         }
     }

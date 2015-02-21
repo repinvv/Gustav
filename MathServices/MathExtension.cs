@@ -23,10 +23,19 @@
         {
             return (angle + add) % 360;
         }
+        public static double NormalizeAngle(this double angle)
+        {
+            return (angle + 360) % 360;
+        }
 
         public static double Sin(this double angle)
         {
             return Math.Sin(angle.ToRadians());
+        }
+
+        public static double Cos(this double angle)
+        {
+            return Math.Cos(angle.ToRadians());
         }
     }
 }

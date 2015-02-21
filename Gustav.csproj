@@ -73,6 +73,7 @@
     <Compile Include="Storage\EnemyDataStorage.cs" />
     <Compile Include="Runner.cs" />
     <Compile Include="Position\PositionRegister.cs" />
+    <Compile Include="Storage\ModeSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

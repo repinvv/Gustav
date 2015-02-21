@@ -1,9 +1,6 @@
 ﻿namespace Gustav.MainLogic
 {
-    using System;
-    using System.Data;
     using Gustav.MathServices;
-    using Gustav.Properties;
     using Gustav.Storage;
     using Robocode;
 
@@ -12,12 +9,14 @@
         private readonly CombatParametersStorage storage;
         private readonly AnglesCalculator anglesCalculator;
         private readonly EnemyDataStorage enemyDataStorage;
+        private readonly ModeSelector modeSelector;
 
-        public ScanLogic(CombatParametersStorage storage, AnglesCalculator anglesCalculator, EnemyDataStorage enemyDataStorage)
+        public ScanLogic(CombatParametersStorage storage, AnglesCalculator anglesCalculator, EnemyDataStorage enemyDataStorage, ModeSelector modeSelector)
         {
             this.storage = storage;
             this.anglesCalculator = anglesCalculator;
             this.enemyDataStorage = enemyDataStorage;
+            this.modeSelector = modeSelector;
         }
 
         public Rates DetermineRates()
@@ -25,7 +24,7 @@
             var scan = GetScanParameters();
             if (enemyDataStorage.HaveActiveEnemy())
             {
-                storage.CombatMode = CombatMode.Engage;
+                modeSelector.SelectMode(CombatMode.Engage);
                 return null;
             }
 
@@ -36,11 +35,11 @@
 
                 if (scan.Stage > 1)
                 {
-                    storage.CombatMode = CombatMode.Search;
+                    modeSelector.SelectMode(CombatMode.Search);
                     return null;
                 }
 
-                scan.TargetBearing = scan.TargetBearing.AddAngle(scan.Clockwize ? 179 : -179);
+                scan.TargetHeading = scan.TargetHeading.AddAngle(180);
             }
 
             return new Rates
@@ -54,27 +53,25 @@
         private bool ScanEnded(ScanParameters scan)
         {
             var direction = scan.Clockwize ? 1 : -1;
-            var diff = direction * anglesCalculator.GetBearingDiff(scan.TargetBearing, storage.Robot.RadarHeading);
-            return diff >= 0;
+            var diff = direction * anglesCalculator.GetBearingDiff(scan.TargetHeading, storage.Robot.RadarHeading);
+            return diff >= 0 && diff < 90;
         }
 
         private ScanParameters GetScanParameters()
         {
-            if (storage.ScanParameters != null)
+            if (storage.Scan != null)
             {
-                return storage.ScanParameters;
+                return storage.Scan;
             }
 
             var centerBearing = anglesCalculator.GetBearingToCoordinates(storage.Robot.BattleFieldWidth / 2, storage.Robot.BattleFieldHeight / 2);
             var diff = anglesCalculator.GetBearingDiff(centerBearing, storage.Robot.Heading);
             var clockwize = diff > 0;
-            var target = storage.Robot.Heading.AddAngle(clockwize ? 179 : -179);
-
-            var scan = storage.ScanParameters = new ScanParameters
+            var scan = storage.Scan = new ScanParameters
                        {
                            Clockwize = clockwize,
                            Stage = 0,
-                           TargetBearing = target
+                           TargetHeading = storage.Robot.RadarHeading.AddAngle(180)
                        };
             return scan;
         }
