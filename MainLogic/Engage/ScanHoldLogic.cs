@@ -1,9 +1,11 @@
 ﻿namespace Gustav.MainLogic.Engage
 {
+    using System;
     using Gustav.MathServices;
     using Gustav.Position;
     using Gustav.Properties;
     using Gustav.Storage;
+    using Robocode;
 
     class ScanHoldLogic
     {
@@ -18,10 +20,13 @@
 
         public void DetermineScanRates(Rates rates, EnemyData enemy)
         {
-            var bearing = anglesCalculator.GetBearingToCoordinates(enemy.Position.X, enemy.Position.Y);
-            var diff = anglesCalculator.GetBearingDiff(bearing, storage.Robot.RadarHeading);
-            bearing = diff > 0 ? bearing.AddAngle(Settings.Default.ScanArc) : bearing.AddAngle(-Settings.Default.ScanArc);
-
+            var heading = anglesCalculator.GetHeadingToCoordinates(enemy.Position.X, enemy.Position.Y);
+            var diff = anglesCalculator.GetHeadingDiff(heading, storage.Robot.RadarHeading);
+            heading = diff > 0 ? heading.AddAngle(Settings.Default.ScanArc) : heading.AddAngle(-Settings.Default.ScanArc);
+            diff = anglesCalculator.GetHeadingDiff(heading, storage.Robot.RadarHeading);
+            diff = anglesCalculator.GetHeadingDiff(diff, rates.BodyTurn);
+            diff = anglesCalculator.GetHeadingDiff(diff, rates.TurretTurn);
+            rates.RadarTurn = !(diff < 0) ? Math.Min(diff, Rules.RADAR_TURN_RATE) : Math.Max(diff, -Rules.RADAR_TURN_RATE);
         }
     }
 }

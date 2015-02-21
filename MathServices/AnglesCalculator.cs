@@ -20,12 +20,12 @@
             return new DoublePoint(x, y);
         }
 
-        public double GetBearingToCoordinates(double x, double y)
+        public double GetHeadingToCoordinates(double x, double y)
         {
             return Math.Atan2(x - storage.Robot.X, y - storage.Robot.Y).ToDegrees().NormalizeAngle();
         }
 
-        public double GetBearingDiff(double bearing, double heading)
+        public double GetHeadingDiff(double bearing, double heading)
         {
             return (((((bearing - heading) % 360) + 540) % 360) - 180);
         }

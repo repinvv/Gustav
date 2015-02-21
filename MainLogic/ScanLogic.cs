@@ -53,7 +53,7 @@
         private bool ScanEnded(ScanParameters scan)
         {
             var direction = scan.Clockwize ? 1 : -1;
-            var diff = direction * anglesCalculator.GetBearingDiff(scan.TargetHeading, storage.Robot.RadarHeading);
+            var diff = direction * anglesCalculator.GetHeadingDiff(scan.TargetHeading, storage.Robot.RadarHeading);
             return diff >= 0 && diff < 90;
         }
 
@@ -64,8 +64,8 @@
                 return storage.Scan;
             }
 
-            var centerBearing = anglesCalculator.GetBearingToCoordinates(storage.Robot.BattleFieldWidth / 2, storage.Robot.BattleFieldHeight / 2);
-            var diff = anglesCalculator.GetBearingDiff(centerBearing, storage.Robot.Heading);
+            var centerBearing = anglesCalculator.GetHeadingToCoordinates(storage.Robot.BattleFieldWidth / 2, storage.Robot.BattleFieldHeight / 2);
+            var diff = anglesCalculator.GetHeadingDiff(centerBearing, storage.Robot.Heading);
             var clockwize = diff > 0;
             var scan = storage.Scan = new ScanParameters
                        {

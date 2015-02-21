@@ -1,5 +1,7 @@
 ﻿namespace Gustav
 {
+    using System;
+    using System.IO;
     using Gustav.MainLogic;
     using Gustav.Properties;
     using Gustav.Storage;
@@ -10,13 +12,15 @@
         private readonly RateDeterminationLogic rateDeterminationLogic;
         private readonly EnemyDataStorage enemyDataStorage;
         private readonly ModeSelector modeSelector;
+        private readonly XmlSerialization serialization;
 
-        public Runner(CombatParametersStorage storage, RateDeterminationLogic rateDeterminationLogic, EnemyDataStorage enemyDataStorage, ModeSelector modeSelector)
+        public Runner(CombatParametersStorage storage, RateDeterminationLogic rateDeterminationLogic, EnemyDataStorage enemyDataStorage, ModeSelector modeSelector, XmlSerialization serialization)
         {
             this.storage = storage;
             this.rateDeterminationLogic = rateDeterminationLogic;
             this.enemyDataStorage = enemyDataStorage;
             this.modeSelector = modeSelector;
+            this.serialization = serialization;
         }
 
         public void Run(Loyalist loyalist)
@@ -24,7 +28,21 @@
             Init(loyalist);
             while (loyalist.Energy > 0)
             {
-                var rate = rateDeterminationLogic.DetermineRates();
+                Rates rate = null;
+                try
+                {
+                    rate = rateDeterminationLogic.DetermineRates();
+                }
+                catch (Exception ex)
+                {
+                    if (!string.IsNullOrWhiteSpace(Settings.Default.Logfile))
+                    {
+                        var log = ex.ToString() + Environment.NewLine + serialization.Serialize(storage);
+                        File.AppendAllText(Settings.Default.Logfile, log);
+                    }
+                    break;
+                }
+
                 loyalist.VelocityRate = rate.Velocity;
                 loyalist.TurnRate = rate.BodyTurn;
                 loyalist.GunRotationRate = rate.TurretTurn;

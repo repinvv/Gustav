@@ -16,8 +16,8 @@
 
         public void DetermineMovementRates(Rates rates, EnemyData enemyData)
         {
-            rates.BodyTurn = 5;
-            rates.Velocity = 5;
+            rates.BodyTurn = -3;
+            rates.Velocity = 8;
         }
     }
 }

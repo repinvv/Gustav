@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="XmlSerialization.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="MainLogic\Engage\BulletPowerCalculator.cs" />
     <Compile Include="MainLogic\Engage\CurrentEnemySelection.cs" />
@@ -77,7 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

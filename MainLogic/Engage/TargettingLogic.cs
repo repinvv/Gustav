@@ -23,7 +23,7 @@
         public void DetermineTargettingRates(Rates rates, EnemyData enemy)
         {
             var currentHeading = turretHeadingCalculator.GetCurrentTurnHeading(enemy);
-            var diff = anglesCalculator.GetBearingDiff(currentHeading, storage.Robot.GunHeading);
+            var diff = anglesCalculator.GetHeadingDiff(currentHeading, storage.Robot.GunHeading);
             var miss = Math.Abs(diff.Sin() * enemy.Distance);
             if (miss < Settings.Default.TargettingTolerance && Math.Abs(storage.Robot.GunHeat) < Settings.Default.ComparisionTolerance)
             {
@@ -35,8 +35,8 @@
             }
 
             var nextHeading = turretHeadingCalculator.GetNextTurnHeading(enemy);
-            diff = anglesCalculator.GetBearingDiff(nextHeading, storage.Robot.GunHeading);
-            var neededRate = anglesCalculator.GetBearingDiff(diff, rates.BodyTurn);
+            diff = anglesCalculator.GetHeadingDiff(nextHeading, storage.Robot.GunHeading);
+            var neededRate = anglesCalculator.GetHeadingDiff(diff, rates.BodyTurn);
 
             if (neededRate < 0)
             {

@@ -17,12 +17,12 @@
 
         public double GetCurrentTurnHeading(EnemyData enemy)
         {
-            return anglesCalculator.GetBearingToCoordinates(enemy.Position.X, enemy.Position.Y);
+            return anglesCalculator.GetHeadingToCoordinates(enemy.Position.X, enemy.Position.Y);
         }
 
         public double GetNextTurnHeading(EnemyData enemy)
         {
-            return anglesCalculator.GetBearingToCoordinates(enemy.Position.X, enemy.Position.Y);
+            return anglesCalculator.GetHeadingToCoordinates(enemy.Position.X, enemy.Position.Y);
         }
 
     }
