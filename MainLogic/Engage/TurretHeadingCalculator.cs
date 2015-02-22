@@ -1,7 +1,6 @@
 ﻿namespace Gustav.MainLogic.Engage
 {
     using System;
-    using System.Runtime.InteropServices;
     using Gustav.MathServices;
     using Gustav.Position;
     using Gustav.Storage;
