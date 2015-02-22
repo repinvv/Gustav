@@ -8,16 +8,19 @@
     class BulletPowerCalculator
     {
         private readonly CombatParametersStorage storage;
+        private readonly EnemyRotationCalculator rotationCalculator;
 
-        public BulletPowerCalculator(CombatParametersStorage storage)
+        public BulletPowerCalculator(CombatParametersStorage storage, EnemyRotationCalculator rotationCalculator)
         {
             this.storage = storage;
+            this.rotationCalculator = rotationCalculator;
         }
 
         public void CalculateBulletPower(EnemyData enemy)
         {
-            var reduction = (enemy.Distance - Settings.Default.MaxPowerDistance)/Settings.Default.DistanceRate;
-            var power = Settings.Default.MaxPower - reduction;
+            var distanceReduction = (enemy.Distance - Settings.Default.MaxPowerDistance)/Settings.Default.DistanceRate;
+            var rotationReduction = rotationCalculator.GetEnemyRotation(enemy) / Settings.Default.RotationRate;
+            var power = Settings.Default.MaxPower - distanceReduction - rotationReduction;
             power = Math.Max(power, Settings.Default.MinPower);
             storage.Engage.BulletPower = power;
         }

@@ -30,7 +30,7 @@
                                    Position = point,
                                    Name = e.Name,
                                    Distance = e.Distance,
-                                   Heading = e.HeadingRadians,
+                                   Heading = e.Heading,
                                    Velocity = e.Velocity,
                                    Energy = e.Energy,
                                    LastSeen = e.Time

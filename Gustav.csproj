@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainLogic\Engage\EnemyRotationCalculator.cs" />
     <Compile Include="XmlSerialization.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="MainLogic\Engage\BulletPowerCalculator.cs" />

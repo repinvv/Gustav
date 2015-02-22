@@ -20,7 +20,7 @@
 
         public void DetermineScanRates(Rates rates, EnemyData enemy)
         {
-            var heading = anglesCalculator.GetHeadingToCoordinates(enemy.Position.X, enemy.Position.Y);
+            var heading = anglesCalculator.GetHeadingTo(enemy.Position);
             var diff = anglesCalculator.GetHeadingDiff(heading, storage.Robot.RadarHeading);
             heading = diff > 0 ? heading.AddAngle(Settings.Default.ScanArc) : heading.AddAngle(-Settings.Default.ScanArc);
             diff = anglesCalculator.GetHeadingDiff(heading, storage.Robot.RadarHeading);

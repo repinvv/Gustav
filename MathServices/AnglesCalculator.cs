@@ -25,9 +25,14 @@
             return new DoublePoint(x, y);
         }
 
-        public double GetHeadingToCoordinates(double x, double y)
+        public double GetHeadingTo(DoublePoint point)
         {
-            return Math.Atan2(x - storage.Robot.X, y - storage.Robot.Y).ToDegrees().NormalizeAngle();
+            return GetHeading(point, new DoublePoint(storage.Robot.X, storage.Robot.Y));
+        }
+
+        public double GetHeading(DoublePoint point, DoublePoint from)
+        {
+            return Math.Atan2(point.X - from.X, point.Y - from.Y).ToDegrees().NormalizeAngle();
         }
 
         public double GetHeadingDiff(double heading, double heading1)

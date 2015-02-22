@@ -27,7 +27,7 @@
       <Value Profile="(Default)">0.3</Value>
     </Setting>
     <Setting Name="DistanceRate" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">110</Value>
+      <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="TargettingTolerance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">6</Value>
@@ -40,6 +40,9 @@
     </Setting>
     <Setting Name="Logfile" Type="System.String" Scope="User">
       <Value Profile="(Default)">loyalist.log</Value>
+    </Setting>
+    <Setting Name="RotationRate" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">5</Value>
     </Setting>
   </Settings>
 </SettingsFile>

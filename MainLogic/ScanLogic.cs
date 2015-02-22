@@ -64,8 +64,9 @@
                 return storage.Scan;
             }
 
-            var centerBearing = anglesCalculator.GetHeadingToCoordinates(storage.Robot.BattleFieldWidth / 2, storage.Robot.BattleFieldHeight / 2);
-            var diff = anglesCalculator.GetHeadingDiff(centerBearing, storage.Robot.Heading);
+            var center = new DoublePoint(storage.Robot.BattleFieldWidth / 2, storage.Robot.BattleFieldHeight / 2);
+            var centerHeading = anglesCalculator.GetHeadingTo(center);
+            var diff = anglesCalculator.GetHeadingDiff(centerHeading, storage.Robot.Heading);
             var clockwize = diff > 0;
             var scan = storage.Scan = new ScanParameters
                        {
