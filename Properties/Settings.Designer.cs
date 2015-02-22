@@ -205,13 +205,97 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        [global::System.Configuration.DefaultSettingValueAttribute("6")]
         public double TurnVelocity {
             get {
                 return ((double)(this["TurnVelocity"]));
             }
             set {
                 this["TurnVelocity"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("300")]
+        public double CombatRange {
+            get {
+                return ((double)(this["CombatRange"]));
+            }
+            set {
+                this["CombatRange"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("100")]
+        public double CloseUpRange {
+            get {
+                return ((double)(this["CloseUpRange"]));
+            }
+            set {
+                this["CloseUpRange"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public double CloseUpHealthGap {
+            get {
+                return ((double)(this["CloseUpHealthGap"]));
+            }
+            set {
+                this["CloseUpHealthGap"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public double StepDistance {
+            get {
+                return ((double)(this["StepDistance"]));
+            }
+            set {
+                this["StepDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        public double StepDeviate {
+            get {
+                return ((double)(this["StepDeviate"]));
+            }
+            set {
+                this["StepDeviate"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public double BorderRange {
+            get {
+                return ((double)(this["BorderRange"]));
+            }
+            set {
+                this["BorderRange"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public double ManeuverAngle {
+            get {
+                return ((double)(this["ManeuverAngle"]));
+            }
+            set {
+                this["ManeuverAngle"] = value;
             }
         }
     }

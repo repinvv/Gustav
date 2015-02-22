@@ -1,11 +1,9 @@
 ﻿namespace Gustav.MainLogic.Movement
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
     using Gustav.MathServices;
     using Gustav.Position;
-    using Gustav.Properties;
     using Gustav.Storage;
 
     class MovementLogic

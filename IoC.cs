@@ -5,7 +5,7 @@
     using System.Linq;
     using System.Reflection;
 
-    public class IoC
+    class IoC
     {
         private readonly Dictionary<Type, RegisteredObject> registeredObjects = new Dictionary<Type, RegisteredObject>();
 

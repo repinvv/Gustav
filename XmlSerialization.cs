@@ -5,7 +5,7 @@
     using System.Xml;
     using System.Xml.Serialization;
 
-    public class XmlSerialization
+    class XmlSerialization
     {
         public string Serialize<T>(T source) where T : class
         {

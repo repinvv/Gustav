@@ -1,7 +1,9 @@
 ﻿namespace Gustav.MathServices
 {
     using System;
+    using Gustav.Properties;
     using Gustav.Storage;
+    using Robocode;
 
     internal class AnglesCalculator
     {
