@@ -66,5 +66,11 @@
             enemies.Clear();
             previousData.Clear();
         }
+
+        public EnemyData GetPrevious(string name)
+        {
+            EnemyData enemy;
+            return previousData.TryGetValue(name, out enemy) ? enemy : GetEnemy(name);
+        }
     }
 }

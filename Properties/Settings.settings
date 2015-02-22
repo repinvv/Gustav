@@ -39,7 +39,7 @@
       <Value Profile="(Default)">15</Value>
     </Setting>
     <Setting Name="Logfile" Type="System.String" Scope="User">
-      <Value Profile="(Default)">c:\robocode\loyalist.log</Value>
+      <Value Profile="(Default)">loyalist.log</Value>
     </Setting>
   </Settings>
 </SettingsFile>

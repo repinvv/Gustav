@@ -33,7 +33,7 @@
             {
                 scan.Stage++;
 
-                if (scan.Stage > 1)
+                if (scan.Stage > 2)
                 {
                     modeSelector.SelectMode(CombatMode.Search);
                     return null;

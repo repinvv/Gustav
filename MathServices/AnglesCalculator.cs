@@ -14,9 +14,14 @@
 
         public DoublePoint GetCoordinatesByAngle(double distance, double angle)
         {
-            angle = angle.NormalizeAngle();
-            var x = angle.Sin() * distance + storage.Robot.X;
-            var y = angle.Cos() * distance + storage.Robot.Y;
+            return GetCoordinatesByAngle(distance, angle, new DoublePoint(storage.Robot.X, storage.Robot.Y));
+        }
+
+        public DoublePoint GetCoordinatesByAngle(double distance, double angle, DoublePoint position)
+        {
+            // angle = angle.NormalizeAngle();
+            var x = angle.Sin() * distance + position.X;
+            var y = angle.Cos() * distance + position.Y;
             return new DoublePoint(x, y);
         }
 
@@ -25,9 +30,16 @@
             return Math.Atan2(x - storage.Robot.X, y - storage.Robot.Y).ToDegrees().NormalizeAngle();
         }
 
-        public double GetHeadingDiff(double bearing, double heading)
+        public double GetHeadingDiff(double heading, double heading1)
         {
-            return (((((bearing - heading) % 360) + 540) % 360) - 180);
+            return (((((heading - heading1) % 360) + 540) % 360) - 180);
+        }
+
+        public double GetDistance(DoublePoint point1, DoublePoint point2)
+        {
+            var x = point1.X - point2.X;
+            var y = point1.Y - point2.Y;
+            return Math.Sqrt(x * x + y * y);
         }
     }
 }

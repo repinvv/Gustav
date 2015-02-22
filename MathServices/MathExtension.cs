@@ -37,5 +37,10 @@
         {
             return Math.Cos(angle.ToRadians());
         }
+
+        public static double Asin(this double sin)
+        {
+            return Math.Asin(sin).ToDegrees();
+        }
     }
 }

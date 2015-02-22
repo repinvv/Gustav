@@ -169,7 +169,7 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("c:\\robocode\\loyalist.log")]
+        [global::System.Configuration.DefaultSettingValueAttribute("loyalist.log")]
         public string Logfile {
             get {
                 return ((string)(this["Logfile"]));
