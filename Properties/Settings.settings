@@ -24,7 +24,7 @@
       <Value Profile="(Default)">0.3</Value>
     </Setting>
     <Setting Name="DistanceReductionRate" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">120</Value>
+      <Value Profile="(Default)">80</Value>
     </Setting>
     <Setting Name="TargettingTolerance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">10</Value>
@@ -39,7 +39,7 @@
       <Value Profile="(Default)">loyalist.log</Value>
     </Setting>
     <Setting Name="RotationReductionRate" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="TargetSpeedAdjust" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.8</Value>
@@ -51,25 +51,28 @@
       <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="CombatRange" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">300</Value>
+      <Value Profile="(Default)">250</Value>
     </Setting>
     <Setting Name="CloseUpRange" Type="System.Double" Scope="User">
       <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="CloseUpHealthGap" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">30</Value>
+      <Value Profile="(Default)">0.3</Value>
     </Setting>
     <Setting Name="StepDistance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">50</Value>
+      <Value Profile="(Default)">70</Value>
     </Setting>
     <Setting Name="StepDeviate" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">50</Value>
+      <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="BorderRange" Type="System.Double" Scope="User">
       <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="ManeuverAngle" Type="System.Double" Scope="User">
       <Value Profile="(Default)">30</Value>
+    </Setting>
+    <Setting Name="RamHealthGap" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.6</Value>
     </Setting>
   </Settings>
 </SettingsFile>

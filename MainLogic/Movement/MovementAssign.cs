@@ -22,6 +22,11 @@
 
         public void AssignDestination(EnemyData enemy)
         {
+            if (storage.Robot.Energy - enemy.Energy > enemy.Energy * Settings.Default.RamHealthGap && storage.Robot.Others ==1)
+            {
+                Ram(enemy);
+            }
+
             if (storage.Movement.Path.Any())
             {
                 return;
@@ -33,7 +38,7 @@
                 range = Settings.Default.CloseUpRange;
             }
 
-            if (Math.Abs(enemy.Distance - range) < Settings.Default.StepDistance)
+            if (Math.Abs(enemy.Distance - range) > Settings.Default.StepDistance)
             {
                 var destination = PullRange(enemy, range);
                 if (helper.DestinationValid(destination))
@@ -57,6 +62,7 @@
 
         private void Ram(EnemyData enemy)
         {
+            storage.Movement.Path.Clear();
             storage.Movement.Path.Enqueue(enemy.Position);
         }
 
