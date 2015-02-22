@@ -14,11 +14,11 @@
         public void SelectMode(CombatMode mode)
         {
             storage.CombatMode = mode;
+            storage.Movement = null;
             switch (mode)
             {
                 case CombatMode.Scan:
                     storage.Scan = null;
-                    storage.Movement = null;
                     break;
                 case CombatMode.Engage:
                     storage.Engage = null;

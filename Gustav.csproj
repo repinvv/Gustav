@@ -44,11 +44,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainLogic\Engage\EnemyRotationCalculator.cs" />
+    <Compile Include="MainLogic\MaxFireDistanceSelector.cs" />
     <Compile Include="MainLogic\Movement\MovementAssign.cs" />
     <Compile Include="MainLogic\Movement\MovementAssignHelper.cs" />
     <Compile Include="MainLogic\Movement\RandomMovementAssign.cs" />
     <Compile Include="MainLogic\Movement\MovementParameters.cs" />
     <Compile Include="MainLogic\Movement\PathFollowing.cs" />
+    <Compile Include="MainLogic\SearchLogic.cs" />
     <Compile Include="XmlSerialization.cs" />
     <Compile Include="IoC.cs" />
     <Compile Include="MainLogic\Engage\BulletPowerCalculator.cs" />

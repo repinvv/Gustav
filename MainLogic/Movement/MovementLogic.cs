@@ -27,12 +27,13 @@
                                                    {
                                                        Path = new Queue<DoublePoint>()
                                                    };
-            if (enemyDataStorage.Collision && storage.Movement.Path.Any())
+            if (enemyDataStorage.Collision != null && storage.Movement.Path.Any())
             {
                 storage.Movement.Path.Dequeue();
+                storage.Engage.CurrentEnemy = enemyDataStorage.Collision;
+                enemyDataStorage.Collision = null;
             }
 
-            enemyDataStorage.Collision = false;
             movementAssign.AssignDestination(enemy);
             pathFollowing.FollowPath(rates);
         }

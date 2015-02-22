@@ -34,7 +34,7 @@
 
         public override void OnHitRobot(HitRobotEvent evnt)
         {
-            positionRegister.OnCollistion();
+            positionRegister.OnCollision(evnt);
         }
     }
 }

@@ -37,9 +37,22 @@
                                });
         }
 
-        public void OnCollistion()
+        public void OnCollision(HitRobotEvent e)
         {
-            enemyDataStorage.Collision = true;
+            var point = anglesCalculator.GetCoordinatesByAngle(storage.Robot.Height, storage.Robot.Heading.AddAngle(e.Bearing));
+
+            enemyDataStorage.StoreEnemy(new EnemyData
+            {
+                Position = point,
+                Name = e.Name,
+                Distance = storage.Robot.Height,
+                Heading = 0,
+                Velocity = 0,
+                Energy = e.Energy,
+                LastSeen = e.Time
+            });
+
+            enemyDataStorage.Collision = e.Name;
         }
     }
 }

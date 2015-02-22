@@ -21,10 +21,10 @@
       <Value Profile="(Default)">70</Value>
     </Setting>
     <Setting Name="MinPower" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.3</Value>
+      <Value Profile="(Default)">0.7</Value>
     </Setting>
     <Setting Name="DistanceReductionRate" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">80</Value>
+      <Value Profile="(Default)">100</Value>
     </Setting>
     <Setting Name="TargettingTolerance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">10</Value>
@@ -33,7 +33,7 @@
       <Value Profile="(Default)">0.001</Value>
     </Setting>
     <Setting Name="ScanArc" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">15</Value>
+      <Value Profile="(Default)">25</Value>
     </Setting>
     <Setting Name="Logfile" Type="System.String" Scope="User">
       <Value Profile="(Default)">loyalist.log</Value>
@@ -45,13 +45,13 @@
       <Value Profile="(Default)">0.8</Value>
     </Setting>
     <Setting Name="MaxFireDistance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">600</Value>
+      <Value Profile="(Default)">700</Value>
     </Setting>
     <Setting Name="TurnVelocity" Type="System.Double" Scope="User">
       <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="CombatRange" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">250</Value>
+      <Value Profile="(Default)">220</Value>
     </Setting>
     <Setting Name="CloseUpRange" Type="System.Double" Scope="User">
       <Value Profile="(Default)">100</Value>
@@ -63,7 +63,7 @@
       <Value Profile="(Default)">70</Value>
     </Setting>
     <Setting Name="StepDeviate" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">30</Value>
+      <Value Profile="(Default)">35</Value>
     </Setting>
     <Setting Name="BorderRange" Type="System.Double" Scope="User">
       <Value Profile="(Default)">30</Value>
@@ -73,6 +73,9 @@
     </Setting>
     <Setting Name="RamHealthGap" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.6</Value>
+    </Setting>
+    <Setting Name="ManeuverHealthReserve" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">40</Value>
     </Setting>
   </Settings>
 </SettingsFile>

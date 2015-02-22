@@ -12,7 +12,7 @@
         readonly Dictionary<string, EnemyData> enemies = new Dictionary<string, EnemyData>();
         readonly Dictionary<string, EnemyData> previousData = new Dictionary<string, EnemyData>();
 
-        public bool Collision { get; set; }
+        public string Collision { get; set; }
 
         public EnemyDataStorage(CombatParametersStorage storage)
         {

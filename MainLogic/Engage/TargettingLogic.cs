@@ -12,14 +12,12 @@
         private readonly CombatParametersStorage storage;
         private readonly TurretHeadingCalculator turretHeadingCalculator;
         private readonly AnglesCalculator anglesCalculator;
-        private readonly EnemyRotationCalculator rotationCalculator;
 
-        public TargettingLogic(CombatParametersStorage storage, TurretHeadingCalculator turretHeadingCalculator, AnglesCalculator anglesCalculator, EnemyRotationCalculator rotationCalculator)
+        public TargettingLogic(CombatParametersStorage storage, TurretHeadingCalculator turretHeadingCalculator, AnglesCalculator anglesCalculator)
         {
             this.storage = storage;
             this.turretHeadingCalculator = turretHeadingCalculator;
             this.anglesCalculator = anglesCalculator;
-            this.rotationCalculator = rotationCalculator;
         }
 
         public void DetermineTargettingRates(Rates rates, EnemyData enemy)
@@ -27,23 +25,9 @@
             var currentHeading = turretHeadingCalculator.GetCurrentTurnHeading(enemy);
             var diff = anglesCalculator.GetHeadingDiff(currentHeading, storage.Robot.GunHeading);
             var miss = Math.Abs(diff.Sin() * enemy.Distance);
-            rates.BulletPower = 0;
             if (miss < Settings.Default.TargettingTolerance && Math.Abs(storage.Robot.GunHeat) < Settings.Default.ComparisionTolerance)
             {
-                var maxfire = Settings.Default.MaxFireDistance;
-                if (Math.Abs(enemy.Velocity) > 2)
-                {
-                    maxfire -= 100;
-                    if (Math.Abs(rotationCalculator.GetEnemyRotation(enemy)) > 1)
-                    {
-                        maxfire -= 100;
-                    }
-                }
-
-                if (enemy.Distance <= maxfire)
-                {
-                    rates.BulletPower = storage.Engage.BulletPower;
-                }
+                rates.BulletPower = storage.Engage.BulletPower;
             }
 
             var nextHeading = turretHeadingCalculator.GetNextTurnHeading(enemy);

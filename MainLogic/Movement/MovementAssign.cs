@@ -12,17 +12,19 @@
         private readonly CombatParametersStorage storage;
         private readonly AnglesCalculator anglesCalculator;
         private readonly MovementAssignHelper helper;
+        private readonly ModeSelector modeSelector;
 
-        public MovementAssign(CombatParametersStorage storage, AnglesCalculator anglesCalculator, MovementAssignHelper helper)
+        public MovementAssign(CombatParametersStorage storage, AnglesCalculator anglesCalculator, MovementAssignHelper helper, ModeSelector modeSelector)
         {
             this.storage = storage;
             this.anglesCalculator = anglesCalculator;
             this.helper = helper;
+            this.modeSelector = modeSelector;
         }
 
         public void AssignDestination(EnemyData enemy)
         {
-            if (storage.Robot.Energy - enemy.Energy > enemy.Energy * Settings.Default.RamHealthGap && storage.Robot.Others ==1)
+            if (storage.Robot.Energy - enemy.Energy > enemy.Energy * Settings.Default.RamHealthGap && storage.Robot.Others ==1 && storage.Robot.Energy> Settings.Default.ManeuverHealthReserve)
             {
                 Ram(enemy);
             }
@@ -33,7 +35,7 @@
             }
 
             var range = Settings.Default.CombatRange;
-            if (storage.Robot.Energy - enemy.Energy > enemy.Energy * Settings.Default.CloseUpHealthGap)
+            if (storage.Robot.Energy - enemy.Energy > enemy.Energy * Settings.Default.CloseUpHealthGap && storage.Robot.Energy > Settings.Default.ManeuverHealthReserve)
             {
                 range = Settings.Default.CloseUpRange;
             }

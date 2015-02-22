@@ -3,7 +3,9 @@
     using System;
     using System.Linq;
     using Gustav.MathServices;
+    using Gustav.Properties;
     using Gustav.Storage;
+    using Robocode;
 
     class RandomMovementAssign
     {
@@ -22,8 +24,8 @@
             }
 
             var rnd = new Random();
-            var x = 25 + rnd.NextDouble() * (storage.Robot.BattleFieldWidth - 50);
-            var y = 25 + rnd.NextDouble() * (storage.Robot.BattleFieldHeight - 50);
+            var x = Rules.RADAR_SCAN_RADIUS / 2 + rnd.NextDouble() * (storage.Robot.BattleFieldWidth - Rules.RADAR_SCAN_RADIUS);
+            var y = Rules.RADAR_SCAN_RADIUS / 2 + rnd.NextDouble() * (storage.Robot.BattleFieldHeight - Rules.RADAR_SCAN_RADIUS);
             storage.Movement.Path.Enqueue(new DoublePoint(x, y));
         }
     }
