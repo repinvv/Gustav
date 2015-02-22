@@ -36,5 +36,10 @@
                                    LastSeen = e.Time
                                });
         }
+
+        public void OnCollistion()
+        {
+            enemyDataStorage.Collision = true;
+        }
     }
 }

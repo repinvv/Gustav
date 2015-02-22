@@ -12,6 +12,8 @@
         readonly Dictionary<string, EnemyData> enemies = new Dictionary<string, EnemyData>();
         readonly Dictionary<string, EnemyData> previousData = new Dictionary<string, EnemyData>();
 
+        public bool Collision { get; set; }
+
         public EnemyDataStorage(CombatParametersStorage storage)
         {
             this.storage = storage;
@@ -58,7 +60,10 @@
 
         private bool NotExpired(EnemyData data)
         {
-            return storage.Robot.Time - data.LastSeen < Settings.Default.ScanExpiration;
+            lock (sync)
+            {
+                return storage.Robot.Time - data.LastSeen < Settings.Default.ScanExpiration;
+            }
         }
 
         public void Clear()
@@ -69,8 +74,11 @@
 
         public EnemyData GetPrevious(string name)
         {
-            EnemyData enemy;
-            return previousData.TryGetValue(name, out enemy) ? enemy : GetEnemy(name);
+            lock (sync)
+            {
+                EnemyData enemy;
+                return previousData.TryGetValue(name, out enemy) ? enemy : GetEnemy(name);
+            }
         }
     }
 }

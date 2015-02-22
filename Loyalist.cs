@@ -31,5 +31,10 @@
         {
             combatParametersStorage.CombatEnded = true;
         }
+
+        public override void OnHitRobot(HitRobotEvent evnt)
+        {
+            positionRegister.OnCollistion();
+        }
     }
 }

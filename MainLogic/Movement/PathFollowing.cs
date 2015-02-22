@@ -36,27 +36,15 @@
 
             var heading = anglesCalculator.GetHeadingTo(target);
             var diff = anglesCalculator.GetHeadingDiff(heading, storage.Robot.Heading);
-            if (Math.Abs(diff) <= 90)
+            var direction = 1;
+            if (Math.Abs(diff) > 90)
             {
-                MoveForward(diff, rates);
+                direction = -1;
+                diff = anglesCalculator.GetHeadingDiff(heading, storage.Robot.Heading.AddAngle(180));
             }
-            else
-            {
-                MoveBackward(diff, rates);
-            }
-        }
 
-        private void MoveForward(double target, Rates rates)
-        {
-            rates.BodyTurn = target > 0 ? Math.Min(target, Rules.MAX_TURN_RATE) : Math.Max(target, -Rules.MAX_TURN_RATE);
-            rates.Velocity = Math.Abs(rates.BodyTurn) > 5 ? Settings.Default.TurnVelocity : Rules.MAX_VELOCITY;
-        }
-
-        private void MoveBackward(double target, Rates rates)
-        {
-            target = anglesCalculator.GetHeadingDiff(storage.Robot.Heading.AddAngle(180), target);
-            rates.BodyTurn = target > 0 ? Math.Min(target, Rules.MAX_TURN_RATE) : Math.Max(target, -Rules.MAX_TURN_RATE);
-            rates.Velocity = Math.Abs(rates.BodyTurn) > 5 ? -Settings.Default.TurnVelocity : -Rules.MAX_VELOCITY;
+            rates.BodyTurn = diff > 0 ? Math.Min(diff, Rules.MAX_TURN_RATE) : Math.Max(diff, -Rules.MAX_TURN_RATE);
+            rates.Velocity = direction * (Math.Abs(rates.BodyTurn) > 5 ? Settings.Default.TurnVelocity : Rules.MAX_VELOCITY);
         }
     }
 }
