@@ -1,6 +1,7 @@
 ﻿namespace Gustav.MainLogic.Engage
 {
     using System;
+    using Gustav.MainLogic.Movement;
     using Gustav.Storage;
 
     class EngageLogic

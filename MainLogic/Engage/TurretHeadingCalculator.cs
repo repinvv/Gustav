@@ -56,7 +56,7 @@
                 var sideA = Math.Abs((distance * sinA) / sinC);
                 var turnsToHit = sideA / enemy.Velocity;
                 var projectedHeading = enemy.Heading.AddAngle(rotation * turnsToHit / 2);
-                var projectedVelocity = enemy.Velocity > (Rules.MAX_VELOCITY * 2) ? enemy.Velocity * 0.85 : enemy.Velocity;
+                var projectedVelocity = enemy.Velocity > (Rules.MAX_VELOCITY * 2) ? enemy.Velocity * Settings.Default.TargetSpeedAdjust : enemy.Velocity;
                 var newAngleB = anglesCalculator.GetHeadingDiff(heading, projectedHeading);
                 sinA = (projectedVelocity * newAngleB.Sin()) / Rules.GetBulletSpeed(storage.Engage.BulletPower);
             }

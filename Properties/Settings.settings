@@ -18,19 +18,16 @@
       <Value Profile="(Default)">5</Value>
     </Setting>
     <Setting Name="MaxPowerDistance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">91</Value>
-    </Setting>
-    <Setting Name="MaxPower" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">70</Value>
     </Setting>
     <Setting Name="MinPower" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.3</Value>
     </Setting>
-    <Setting Name="DistanceRate" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">100</Value>
+    <Setting Name="DistanceReductionRate" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">120</Value>
     </Setting>
     <Setting Name="TargettingTolerance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">6</Value>
+      <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="ComparisionTolerance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.001</Value>
@@ -41,8 +38,17 @@
     <Setting Name="Logfile" Type="System.String" Scope="User">
       <Value Profile="(Default)">loyalist.log</Value>
     </Setting>
-    <Setting Name="RotationRate" Type="System.Double" Scope="User">
+    <Setting Name="RotationReductionRate" Type="System.Double" Scope="User">
       <Value Profile="(Default)">5</Value>
+    </Setting>
+    <Setting Name="TargetSpeedAdjust" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.8</Value>
+    </Setting>
+    <Setting Name="MaxFireDistance" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">600</Value>
+    </Setting>
+    <Setting Name="TurnVelocity" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">4</Value>
     </Setting>
   </Settings>
 </SettingsFile>

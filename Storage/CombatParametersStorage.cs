@@ -2,6 +2,7 @@
 {
     using Gustav.MainLogic;
     using Gustav.MainLogic.Engage;
+    using Gustav.MainLogic.Movement;
 
     class CombatParametersStorage
     {
@@ -12,6 +13,8 @@
         public ScanParameters Scan { get; set; }
 
         public EngageParameters  Engage { get; set; }
+
+        public MovementParameters Movement { get; set; }
 
         public bool CombatEnded { get; set; }
     }
