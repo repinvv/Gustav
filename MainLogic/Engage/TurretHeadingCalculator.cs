@@ -3,6 +3,7 @@
     using System;
     using Gustav.MathServices;
     using Gustav.Position;
+    using Gustav.Properties;
     using Gustav.Storage;
     using Robocode;
 
@@ -10,13 +11,15 @@
     {
         private readonly CombatParametersStorage storage;
         private readonly AnglesCalculator anglesCalculator;
-        private readonly EnemyDataStorage enemyDataStorage;
+        private readonly EnemyRotationCalculator rotationCalculator;
 
-        public TurretHeadingCalculator(CombatParametersStorage storage, AnglesCalculator anglesCalculator, EnemyDataStorage enemyDataStorage)
+        public TurretHeadingCalculator(CombatParametersStorage storage, 
+            AnglesCalculator anglesCalculator,
+            EnemyRotationCalculator rotationCalculator)
         {
             this.storage = storage;
             this.anglesCalculator = anglesCalculator;
-            this.enemyDataStorage = enemyDataStorage;
+            this.rotationCalculator = rotationCalculator;
         }
 
         public double GetCurrentTurnHeading(EnemyData enemy)
@@ -35,20 +38,31 @@
 
         private double GetHeadingToTarget(DoublePoint robotPosition, DoublePoint enemyPosition, EnemyData enemy)
         {
-            var angleB = anglesCalculator.GetHeadingDiff(storage.Robot.GunHeading.AddAngle(180), enemy.Heading);
+            var heading = anglesCalculator.GetHeading(robotPosition, enemyPosition);
+            if (Math.Abs(enemy.Velocity) < 1)
+            {
+                return heading.AddAngle(180);
+            }
+
+            var angleB = anglesCalculator.GetHeadingDiff(heading, enemy.Heading);
             var sinA = (enemy.Velocity * angleB.Sin()) / Rules.GetBulletSpeed(storage.Engage.BulletPower);
-            var angleA = sinA.Asin();
-            var angleC = 180 - Math.Abs(angleA) - Math.Abs(angleB);
-            var sinC = angleC.Sin();
-            var distance = anglesCalculator.GetDistance(robotPosition, enemyPosition);
-            var sideA = (distance * sinA) / sinC;
-            var turnsToHit = sideA / enemy.Velocity;
-            var rotation = anglesCalculator.GetHeadingDiff(enemy.Heading, enemyDataStorage.GetPrevious(enemy.Name).Heading) * turnsToHit / 2;
-            var projectedHeading = enemy.Heading.AddAngle(rotation);
-            var projectedVelocity = enemy.Velocity > (Rules.MAX_VELOCITY * 2) ? enemy.Velocity * 0.85 : enemy.Velocity;
-            var newAngleB = anglesCalculator.GetHeadingDiff(storage.Robot.GunHeading.AddAngle(180), projectedHeading);
-            var newsinA = (projectedVelocity * newAngleB.Sin()) / Rules.GetBulletSpeed(storage.Engage.BulletPower);
-            return storage.Robot.GunHeading + newsinA.Asin();
+            var rotation = rotationCalculator.GetEnemyRotation(enemy);
+            if (Math.Abs(rotation) > Settings.Default.ComparisionTolerance)
+            {
+                var angleA = sinA.Asin();
+                var angleC = 180 - Math.Abs(angleA) - Math.Abs(angleB);
+                var sinC = angleC.Sin();
+                var distance = anglesCalculator.GetDistance(robotPosition, enemyPosition);
+                var sideA = Math.Abs((distance * sinA) / sinC);
+                var turnsToHit = sideA / enemy.Velocity;
+                var projectedHeading = enemy.Heading.AddAngle(rotation * turnsToHit / 2);
+                var projectedVelocity = enemy.Velocity > (Rules.MAX_VELOCITY * 2) ? enemy.Velocity * 0.85 : enemy.Velocity;
+                var newAngleB = anglesCalculator.GetHeadingDiff(heading, projectedHeading);
+                sinA = (projectedVelocity * newAngleB.Sin()) / Rules.GetBulletSpeed(storage.Engage.BulletPower);
+            }
+
+            heading = heading.AddAngle(sinA.Asin());
+            return heading.AddAngle(180);
         }
     }
 }
