@@ -48,7 +48,7 @@
       <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="CombatRange" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">220</Value>
+      <Value Profile="(Default)">270</Value>
     </Setting>
     <Setting Name="CloseUpRange" Type="System.Double" Scope="User">
       <Value Profile="(Default)">100</Value>
@@ -57,10 +57,10 @@
       <Value Profile="(Default)">0.3</Value>
     </Setting>
     <Setting Name="StepDistance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">70</Value>
+      <Value Profile="(Default)">60</Value>
     </Setting>
     <Setting Name="StepDeviate" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">35</Value>
+      <Value Profile="(Default)">45</Value>
     </Setting>
     <Setting Name="BorderRange" Type="System.Double" Scope="User">
       <Value Profile="(Default)">30</Value>
@@ -71,14 +71,14 @@
     <Setting Name="RamHealthGap" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.6</Value>
     </Setting>
-    <Setting Name="ManeuverHealthReserve" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">40</Value>
-    </Setting>
     <Setting Name="CloseUpAngle" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">15</Value>
+      <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="TargetSpeedAdjust" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.9</Value>
+    </Setting>
+    <Setting Name="AggressionHealth" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">30</Value>
     </Setting>
   </Settings>
 </SettingsFile>

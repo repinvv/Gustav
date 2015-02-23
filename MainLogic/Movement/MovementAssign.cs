@@ -24,7 +24,9 @@
 
         public void AssignDestination(EnemyData enemy)
         {
-            if (storage.Robot.Energy - enemy.Energy > enemy.Energy * Settings.Default.RamHealthGap && storage.Robot.Others ==1 && storage.Robot.Energy> Settings.Default.ManeuverHealthReserve)
+            if (storage.Robot.Energy > Settings.Default.AggressionHealth &&
+                storage.Robot.Energy - enemy.Energy > enemy.Energy * Settings.Default.RamHealthGap 
+                && storage.Robot.Others == 1)
             {
                 Ram(enemy);
             }
@@ -35,7 +37,8 @@
             }
 
             var range = Settings.Default.CombatRange;
-            if (storage.Robot.Energy - enemy.Energy > enemy.Energy * Settings.Default.CloseUpHealthGap && storage.Robot.Energy > Settings.Default.ManeuverHealthReserve)
+            if (storage.Robot.Energy > Settings.Default.AggressionHealth &&
+                storage.Robot.Energy - enemy.Energy > enemy.Energy * Settings.Default.CloseUpHealthGap)
             {
                 range = Settings.Default.CloseUpRange;
             }

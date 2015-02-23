@@ -205,7 +205,7 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("220")]
+        [global::System.Configuration.DefaultSettingValueAttribute("270")]
         public double CombatRange {
             get {
                 return ((double)(this["CombatRange"]));
@@ -241,7 +241,7 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("70")]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
         public double StepDistance {
             get {
                 return ((double)(this["StepDistance"]));
@@ -253,7 +253,7 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("35")]
+        [global::System.Configuration.DefaultSettingValueAttribute("45")]
         public double StepDeviate {
             get {
                 return ((double)(this["StepDeviate"]));
@@ -301,19 +301,7 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("40")]
-        public double ManeuverHealthReserve {
-            get {
-                return ((double)(this["ManeuverHealthReserve"]));
-            }
-            set {
-                this["ManeuverHealthReserve"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        [global::System.Configuration.DefaultSettingValueAttribute("20")]
         public double CloseUpAngle {
             get {
                 return ((double)(this["CloseUpAngle"]));
@@ -332,6 +320,18 @@ namespace Gustav.Properties {
             }
             set {
                 this["TargetSpeedAdjust"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public double AggressionHealth {
+            get {
+                return ((double)(this["AggressionHealth"]));
+            }
+            set {
+                this["AggressionHealth"] = value;
             }
         }
     }
