@@ -2,7 +2,7 @@
 {
     using System;
 
-    class EngageParameters
+    public class EngageParameters
     {
         public EngageParameters()
         {

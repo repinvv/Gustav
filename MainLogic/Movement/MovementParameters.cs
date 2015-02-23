@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using Gustav.MathServices;
 
-    class MovementParameters
+    public class MovementParameters
     {
         public MovementParameters()
         {

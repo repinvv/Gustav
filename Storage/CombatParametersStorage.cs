@@ -4,7 +4,7 @@
     using Gustav.MainLogic.Engage;
     using Gustav.MainLogic.Movement;
 
-    class CombatParametersStorage
+    public class CombatParametersStorage
     {
         public Loyalist Robot { get; set; }
 

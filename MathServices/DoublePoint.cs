@@ -1,6 +1,6 @@
 ﻿namespace Gustav.MathServices
 {
-    internal class DoublePoint
+    public class DoublePoint
     {
         public DoublePoint(double x, double y)
         {

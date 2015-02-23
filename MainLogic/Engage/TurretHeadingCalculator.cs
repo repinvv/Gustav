@@ -38,7 +38,8 @@
             var enemyPosition = anglesCalculator.GetCoordinatesByAngle(enemy.Velocity, enemy.Heading, enemy.Position);
             var diff = GetHeadingDiffToTarget(robotPosition, enemyPosition, enemy);
             var heading = anglesCalculator.GetHeading(enemyPosition, robotPosition);
-            return storage.Engage.TargetHeading = heading.AddAngle(diff * GetSpread(enemy.Velocity));
+            var spread = GetSpread(enemy.Velocity);
+            return storage.Engage.TargetHeading = heading.AddAngle(diff * spread);
         }
 
         private double GetSpread(double velocity)
@@ -47,7 +48,7 @@
                          storage.Engage.Random.NextDouble() +
                          storage.Engage.Random.NextDouble() +
                          storage.Engage.Random.NextDouble();
-            return Math.Abs(velocity) < Rules.MAX_VELOCITY / 2 ? random / 2 : Math.Abs(random / 2 - 1);
+            return Math.Abs(velocity) < Rules.MAX_VELOCITY / 2 ? random / 2 : (1 - Math.Abs(random / 2 - 1));
         }
 
         private double GetHeadingDiffToTarget(DoublePoint robotPosition, DoublePoint enemyPosition, EnemyData enemy)

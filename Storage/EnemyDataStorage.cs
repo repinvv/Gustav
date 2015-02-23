@@ -19,17 +19,18 @@
             this.storage = storage;
         }
 
-        public void StoreEnemy(EnemyData enemyData)
+        public void StoreEnemy(EnemyData enemy)
         {
             lock (sync)
             {
                 EnemyData previous;
-                if (enemies.TryGetValue(enemyData.Name, out previous))
+                if (enemies.TryGetValue(enemy.Name, out previous))
                 {
-                    previousData[enemyData.Name] = previous;
+                    previousData[enemy.Name] = previous;
+                    enemy.Dead = previous.Dead;
                 }
 
-                enemies[enemyData.Name] = enemyData;
+                enemies[enemy.Name] = enemy;
             }
         }
 
@@ -38,7 +39,7 @@
             lock (sync)
             {
                 var enemy = enemies[name];
-                return NotExpired(enemy) ? enemy : null;
+                return Valid(enemy) ? enemy : null;
             }
         }
 
@@ -46,7 +47,7 @@
         {
             lock (sync)
             {
-                return enemies.Values.Any(NotExpired);
+                return enemies.Values.Any(Valid);
             }
         }
 
@@ -54,15 +55,15 @@
         {
             lock (sync)
             {
-                return enemies.Values.Where(NotExpired).ToList();
+                return enemies.Values.Where(Valid).ToList();
             }
         }
 
-        private bool NotExpired(EnemyData data)
+        private bool Valid(EnemyData enemy)
         {
             lock (sync)
             {
-                return storage.Robot.Time - data.LastSeen < Settings.Default.ScanExpiration;
+                return !enemy.Dead && storage.Robot.Time - enemy.LastSeen < Settings.Default.ScanExpiration;
             }
         }
 
@@ -85,7 +86,7 @@
         {
             lock (sync)
             {
-                enemies.Remove(name);
+                enemies[name].Dead = true;
             }
         }
     }

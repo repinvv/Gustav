@@ -1,6 +1,6 @@
 ﻿namespace Gustav.MainLogic
 {
-    class ScanParameters
+    public class ScanParameters
     {
         public bool Clockwize { get; set; }
 

@@ -17,5 +17,7 @@
         public double Energy { get; set; }
 
         public long LastSeen { get; set; }
+
+        public bool Dead { get; set; }
     }
 }
