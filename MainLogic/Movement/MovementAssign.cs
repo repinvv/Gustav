@@ -26,13 +26,6 @@
 
         public void AssignDestination(EnemyData enemy)
         {
-            if (storage.Robot.Energy > Settings.Default.AggressionHealth &&
-                storage.Robot.Energy - enemy.Energy > enemy.Energy * Settings.Default.RamHealthGap 
-                && storage.Robot.Others == 1)
-            {
-                Ram(enemy);
-            }
-
             if (storage.Movement.Destination != null)
             {
                 return;
@@ -40,13 +33,13 @@
 
             var range = Settings.Default.CombatRange;
             if (storage.Robot.Energy > Settings.Default.AggressionHealth && 
-                storage.Robot.Others > 4 &&
+                storage.Robot.Others < 5 &&
                 storage.Robot.Energy - enemy.Energy > enemy.Energy * Settings.Default.CloseUpHealthGap)
             {
                 range = Settings.Default.CloseUpRange;
             }
 
-            if (Math.Abs(enemy.Distance - range) > Settings.Default.StepDistance / 2)
+            if (Math.Abs(enemy.Distance - range) > Settings.Default.StepDistance)
             {
                 var destination = PullRange(enemy, range);
                 if (helper.DestinationValid(destination))
@@ -65,22 +58,17 @@
         {
             var right = helper.CreateAroundDestination(enemy, 120);
             var left = helper.CreateAroundDestination(enemy, -120);
-            helper.DecideMovement(left, right, () => Ram(enemy));
-        }
-
-        private void Ram(EnemyData enemy)
-        {
-            storage.Movement.Destination = enemy.Position;
+            helper.DecideMovement(left, right, () => randomMovementAssign.AssignDestination());
         }
 
         private DoublePoint MoveRight(EnemyData enemy)
         {
-            return helper.CreateDestination(anglesCalculator.GetHeadingTo(enemy.Position).AddAngle(90), Settings.Default.ManeuverAngle);
+            return helper.CreateDestination(anglesCalculator.GetHeadingTo(enemy.Position).AddAngle(70), Settings.Default.ManeuverAngle);
         }
 
         private DoublePoint MoveLeft(EnemyData enemy)
         {
-            return helper.CreateDestination(anglesCalculator.GetHeadingTo(enemy.Position).AddAngle(270), Settings.Default.ManeuverAngle);
+            return helper.CreateDestination(anglesCalculator.GetHeadingTo(enemy.Position).AddAngle(290), Settings.Default.ManeuverAngle);
         }
 
         private DoublePoint PullRange(EnemyData enemy, double range)

@@ -44,13 +44,10 @@
 
         private double GetSpread(double velocity)
         {
-            var random = storage.Engage.Random.NextDouble() +
-                         storage.Engage.Random.NextDouble() +
-                         storage.Engage.Random.NextDouble() +
-                         storage.Engage.Random.NextDouble();
+            var random = storage.Engage.Random.FourDouble();
             return Math.Abs(velocity) < Rules.MAX_VELOCITY / 2
-                ? 1 - Settings.Default.TargettingDeviation * (random / 2 - 1)
-                : 1 - Math.Abs(Settings.Default.TargettingDeviation * (random / 2 - 1));
+                ? 1 - Settings.Default.TargettingDeviation * (random * 2 - 1)
+                : 1 - Math.Abs(Settings.Default.TargettingDeviation * (random * 2 - 1));
         }
 
         private double GetHeadingDiffToTarget(DoublePoint robotPosition, DoublePoint enemyPosition, EnemyData enemy)

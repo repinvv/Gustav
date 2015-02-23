@@ -42,5 +42,10 @@
         {
             return Math.Asin(sin).ToDegrees();
         }
+
+        public static double FourDouble(this Random random)
+        {
+            return (random.NextDouble() + random.NextDouble() + random.NextDouble() + random.NextDouble()) / 4;
+        }
     }
 }

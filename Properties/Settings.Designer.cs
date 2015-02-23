@@ -193,7 +193,7 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("6")]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
         public double TurnVelocity {
             get {
                 return ((double)(this["TurnVelocity"]));
@@ -217,7 +217,7 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("125")]
+        [global::System.Configuration.DefaultSettingValueAttribute("150")]
         public double CloseUpRange {
             get {
                 return ((double)(this["CloseUpRange"]));
@@ -241,7 +241,7 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
         public double StepDistance {
             get {
                 return ((double)(this["StepDistance"]));
@@ -253,7 +253,7 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("50")]
+        [global::System.Configuration.DefaultSettingValueAttribute("40")]
         public double StepDeviate {
             get {
                 return ((double)(this["StepDeviate"]));
