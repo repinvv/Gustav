@@ -35,10 +35,7 @@
                 return null;
             }
 
-            storage.Movement = storage.Movement ?? new MovementParameters
-                                                   {
-                                                       Path = new Queue<DoublePoint>()
-                                                   };
+            storage.Movement = storage.Movement ?? new MovementParameters();
 
             var rates = new Rates { RadarTurn = Rules.RADAR_TURN_RATE };
             randomMovementAssign.AssignDestination();

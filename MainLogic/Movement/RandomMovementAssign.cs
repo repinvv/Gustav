@@ -18,7 +18,7 @@
 
         public void AssignDestination()
         {
-            if (storage.Movement.Path.Any())
+            if (storage.Movement.Destination!= null)
             {
                 return;
             }
@@ -26,7 +26,7 @@
             var rnd = new Random();
             var x = Rules.RADAR_SCAN_RADIUS / 2 + rnd.NextDouble() * (storage.Robot.BattleFieldWidth - Rules.RADAR_SCAN_RADIUS);
             var y = Rules.RADAR_SCAN_RADIUS / 2 + rnd.NextDouble() * (storage.Robot.BattleFieldHeight - Rules.RADAR_SCAN_RADIUS);
-            storage.Movement.Path.Enqueue(new DoublePoint(x, y));
+            storage.Movement.Destination = new DoublePoint(x, y);
         }
     }
 }

@@ -31,7 +31,7 @@
                 Ram(enemy);
             }
 
-            if (storage.Movement.Path.Any())
+            if (storage.Movement.Destination != null)
             {
                 return;
             }
@@ -48,7 +48,7 @@
                 var destination = PullRange(enemy, range);
                 if (helper.DestinationValid(destination))
                 {
-                    storage.Movement.Path.Enqueue(destination);
+                    storage.Movement.Destination = destination;
                     return;
                 }
             }
@@ -67,8 +67,7 @@
 
         private void Ram(EnemyData enemy)
         {
-            storage.Movement.Path.Clear();
-            storage.Movement.Path.Enqueue(enemy.Position);
+            storage.Movement.Destination = enemy.Position;
         }
 
         private DoublePoint MoveRight(EnemyData enemy)

@@ -33,13 +33,8 @@
                 {
                     rate = rateDeterminationLogic.DetermineRates();
                 }
-                catch (Exception ex)
+                catch (Exception)
                 {
-                    if (!string.IsNullOrWhiteSpace(Settings.Default.Logfile))
-                    {
-                        var log = ex.ToString() + Environment.NewLine + serialization.Serialize(storage);
-                        File.AppendAllText(Settings.Default.Logfile, log);
-                    }
                     break;
                 }
 

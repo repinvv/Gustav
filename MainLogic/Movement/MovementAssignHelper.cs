@@ -23,18 +23,18 @@
             {
                 if (DestinationValid(right))
                 {
-                    storage.Movement.Path.Enqueue(storage.Movement.Random.Next(GetRandomThreshold()) > 500 ? left : right);
+                    storage.Movement.Destination = storage.Movement.Random.Next(GetRandomThreshold()) > 500 ? left : right;
                 }
                 else
                 {
-                    storage.Movement.Path.Enqueue(left);
+                    storage.Movement.Destination = left;
                 }
             }
             else
             {
                 if (DestinationValid(right))
                 {
-                    storage.Movement.Path.Enqueue(right);
+                    storage.Movement.Destination = right;
                 }
                 else
                 {

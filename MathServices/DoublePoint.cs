@@ -2,6 +2,10 @@
 {
     public class DoublePoint
     {
+        public DoublePoint()
+        {
+        }
+
         public DoublePoint(double x, double y)
         {
             X = x;

@@ -21,16 +21,16 @@
 
         public void FollowPath(Rates rates)
         {
-            if (!storage.Movement.Path.Any())
+            if (storage.Movement.Destination == null)
             {
                 return;
             }
 
-            var target = storage.Movement.Path.Peek();
+            var target = storage.Movement.Destination;
             var robot = new DoublePoint(storage.Robot.X, storage.Robot.Y);
             if (anglesCalculator.GetDistance(target, robot) < (storage.Robot.Height / 2))
             {
-                storage.Movement.Path.Dequeue();
+                storage.Movement.Destination = null;
                 return;
             }
 

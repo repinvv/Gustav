@@ -23,15 +23,12 @@
 
         public void DetermineMovementRates(Rates rates, EnemyData enemy)
         {
-            storage.Movement = storage.Movement ?? new MovementParameters
-                                                   {
-                                                       Path = new Queue<DoublePoint>()
-                                                   };
-            if (enemyDataStorage.Collision != null && storage.Movement.Path.Any())
+            storage.Movement = storage.Movement ?? new MovementParameters();
+            if (enemyDataStorage.Collision != null && storage.Movement.Destination!=null)
             {
-                storage.Movement.Path.Dequeue();
                 storage.Engage.CurrentEnemy = enemyDataStorage.Collision;
                 enemyDataStorage.Collision = null;
+                storage.Movement.Destination = null;
             }
 
             movementAssign.AssignDestination(enemy);

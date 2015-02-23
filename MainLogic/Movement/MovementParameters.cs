@@ -11,7 +11,7 @@
             Random = new Random();
         }
 
-        public Queue<DoublePoint> Path { get; set; }
+        public DoublePoint Destination { get; set; }
 
         public Random Random { get; set; }
 
