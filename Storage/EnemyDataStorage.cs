@@ -86,7 +86,11 @@
         {
             lock (sync)
             {
-                enemies[name].Dead = true;
+                EnemyData enemy;
+                if (enemies.TryGetValue(name, out enemy))
+                {
+                    enemy.Dead = true;
+                }
             }
         }
     }
