@@ -70,18 +70,26 @@
 
         private DoublePoint MoveRight(EnemyData enemy)
         {
-            return helper.CreateDestination(anglesCalculator.GetHeadingTo(enemy.Position).AddAngle(90));
+            return helper.CreateDestination(anglesCalculator.GetHeadingTo(enemy.Position).AddAngle(90), Settings.Default.ManeuverAngle);
         }
 
         private DoublePoint MoveLeft(EnemyData enemy)
         {
-            return helper.CreateDestination(anglesCalculator.GetHeadingTo(enemy.Position).AddAngle(270));
+            return helper.CreateDestination(anglesCalculator.GetHeadingTo(enemy.Position).AddAngle(270), Settings.Default.ManeuverAngle);
         }
 
         private DoublePoint PullRange(EnemyData enemy, double range)
         {
-            double target = enemy.Distance < range ? anglesCalculator.GetHeadingTo(enemy.Position).AddAngle(180) : anglesCalculator.GetHeadingTo(enemy.Position);
-            return helper.CreateDestination(target);
+            if (enemy.Distance < range)
+            {
+                double target =  anglesCalculator.GetHeadingTo(enemy.Position).AddAngle(180);
+                return helper.CreateDestination(target, Settings.Default.ManeuverAngle);
+            }
+            else
+            {
+                double target = anglesCalculator.GetHeadingTo(enemy.Position);
+                return helper.CreateDestination(target, Settings.Default.CloseUpAngle);
+            }
         }
     }
 }

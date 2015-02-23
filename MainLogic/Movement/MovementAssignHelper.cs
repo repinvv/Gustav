@@ -10,7 +10,6 @@
     {
         private readonly CombatParametersStorage storage;
         private readonly AnglesCalculator anglesCalculator;
-        Random rnd = new Random();
 
         public MovementAssignHelper(CombatParametersStorage storage, AnglesCalculator anglesCalculator)
         {
@@ -24,7 +23,7 @@
             {
                 if (DestinationValid(right))
                 {
-                    storage.Movement.Path.Enqueue(rnd.Next(1000) > 500 ? left : right);
+                    storage.Movement.Path.Enqueue(storage.Movement.Random.Next(GetRandomThreshold()) > 500 ? left : right);
                 }
                 else
                 {
@@ -42,6 +41,16 @@
                     bothInvalid();
                 }
             }
+        }
+
+        private int GetRandomThreshold()
+        {
+            if (storage.Movement.Threshold > 750 || storage.Movement.Threshold < 250)
+            {
+                return storage.Movement.Threshold = 500;
+            }
+
+            return storage.Movement.Threshold = storage.Movement.Threshold + (storage.Movement.Random.Next(1000) > storage.Movement.Threshold ? 25 : - 25);
         }
 
         public bool DestinationValid(DoublePoint point)
@@ -64,10 +73,10 @@
             return true;
         }
 
-        public DoublePoint CreateDestination(double target)
+        public DoublePoint CreateDestination(double target, double maneuverAngle)
         {
-            var distance = Settings.Default.StepDistance + rnd.NextDouble() * Settings.Default.StepDeviate;
-            var angle = target + (-Settings.Default.ManeuverAngle + rnd.NextDouble() * 2 * Settings.Default.ManeuverAngle);
+            var distance = Settings.Default.StepDistance + storage.Movement.Random.NextDouble() * Settings.Default.StepDeviate;
+            var angle = target + (-maneuverAngle + storage.Movement.Random.NextDouble() * 2 * maneuverAngle);
             return anglesCalculator.GetCoordinatesByAngle(distance, angle);
         }
 

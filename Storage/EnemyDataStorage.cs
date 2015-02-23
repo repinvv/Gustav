@@ -80,5 +80,13 @@
                 return previousData.TryGetValue(name, out enemy) ? enemy : GetEnemy(name);
             }
         }
+
+        public void RemoveEnemy(string name)
+        {
+            lock (sync)
+            {
+                enemies.Remove(name);
+            }
+        }
     }
 }

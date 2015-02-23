@@ -181,18 +181,6 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.8")]
-        public double TargetSpeedAdjust {
-            get {
-                return ((double)(this["TargetSpeedAdjust"]));
-            }
-            set {
-                this["TargetSpeedAdjust"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("700")]
         public double MaxFireDistance {
             get {
@@ -289,7 +277,7 @@ namespace Gustav.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        [global::System.Configuration.DefaultSettingValueAttribute("50")]
         public double ManeuverAngle {
             get {
                 return ((double)(this["ManeuverAngle"]));
@@ -320,6 +308,30 @@ namespace Gustav.Properties {
             }
             set {
                 this["ManeuverHealthReserve"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public double CloseUpAngle {
+            get {
+                return ((double)(this["CloseUpAngle"]));
+            }
+            set {
+                this["CloseUpAngle"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.9")]
+        public double TargetSpeedAdjust {
+            get {
+                return ((double)(this["TargetSpeedAdjust"]));
+            }
+            set {
+                this["TargetSpeedAdjust"] = value;
             }
         }
     }

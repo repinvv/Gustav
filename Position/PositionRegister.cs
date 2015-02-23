@@ -4,13 +4,13 @@
     using Gustav.Storage;
     using Robocode;
 
-    internal class PositionRegister
+    internal class EventRegister
     {
         private readonly AnglesCalculator anglesCalculator;
         private readonly EnemyDataStorage enemyDataStorage;
         private readonly CombatParametersStorage storage;
 
-        public PositionRegister(AnglesCalculator anglesCalculator, EnemyDataStorage enemyDataStorage, CombatParametersStorage storage)
+        public EventRegister(AnglesCalculator anglesCalculator, EnemyDataStorage enemyDataStorage, CombatParametersStorage storage)
         {
             this.anglesCalculator = anglesCalculator;
             this.enemyDataStorage = enemyDataStorage;
@@ -53,6 +53,11 @@
             });
 
             enemyDataStorage.Collision = e.Name;
+        }
+
+        public void OnDeath(RobotDeathEvent e)
+        {
+            enemyDataStorage.RemoveEnemy(e.Name);
         }
     }
 }

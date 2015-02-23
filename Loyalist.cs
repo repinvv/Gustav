@@ -6,20 +6,20 @@
 
     public class Loyalist : RateControlRobot
     {
-        private PositionRegister positionRegister;
+        private EventRegister eventRegister;
         private CombatParametersStorage combatParametersStorage;
 
         public override void Run()
         {
             var resolver = new Resolver();
-            positionRegister = resolver.Get<PositionRegister>();
+            eventRegister = resolver.Get<EventRegister>();
             combatParametersStorage = resolver.Get<CombatParametersStorage>();
             resolver.Get<Runner>().Run(this);
         }
 
         public override void OnScannedRobot(ScannedRobotEvent e)
         {
-            positionRegister.OnScan(e);
+            eventRegister.OnScan(e);
         }
 
         public override void OnBattleEnded(BattleEndedEvent evnt)
@@ -34,7 +34,12 @@
 
         public override void OnHitRobot(HitRobotEvent evnt)
         {
-            positionRegister.OnCollision(evnt);
+            eventRegister.OnCollision(evnt);
+        }
+
+        public override void OnRobotDeath(RobotDeathEvent evnt)
+        {
+            eventRegister.OnDeath(evnt);
         }
     }
 }

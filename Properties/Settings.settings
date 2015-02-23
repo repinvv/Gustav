@@ -41,9 +41,6 @@
     <Setting Name="RotationReductionRate" Type="System.Double" Scope="User">
       <Value Profile="(Default)">10</Value>
     </Setting>
-    <Setting Name="TargetSpeedAdjust" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.8</Value>
-    </Setting>
     <Setting Name="MaxFireDistance" Type="System.Double" Scope="User">
       <Value Profile="(Default)">700</Value>
     </Setting>
@@ -69,13 +66,19 @@
       <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="ManeuverAngle" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">30</Value>
+      <Value Profile="(Default)">50</Value>
     </Setting>
     <Setting Name="RamHealthGap" Type="System.Double" Scope="User">
       <Value Profile="(Default)">0.6</Value>
     </Setting>
     <Setting Name="ManeuverHealthReserve" Type="System.Double" Scope="User">
       <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="CloseUpAngle" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="TargetSpeedAdjust" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.9</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -24,24 +24,38 @@
 
         public double GetCurrentTurnHeading(EnemyData enemy)
         {
-            var robotPosition = new DoublePoint(storage.Robot.X, storage.Robot.Y);
-            var enemyPosition = enemy.Position;
-            return GetHeadingToTarget(robotPosition, enemyPosition, enemy);
+            if (Double.IsNaN(storage.Engage.TargetHeading))
+            {
+                storage.Engage.TargetHeading = anglesCalculator.GetHeadingTo(enemy.Position);
+            }
+
+            return storage.Engage.TargetHeading;
         }
 
         public double GetNextTurnHeading(EnemyData enemy)
         {
             var robotPosition = anglesCalculator.GetCoordinatesByAngle(storage.Robot.Velocity, storage.Robot.Heading);
             var enemyPosition = anglesCalculator.GetCoordinatesByAngle(enemy.Velocity, enemy.Heading, enemy.Position);
-            return GetHeadingToTarget(robotPosition, enemyPosition, enemy);
+            var diff = GetHeadingDiffToTarget(robotPosition, enemyPosition, enemy);
+            var heading = anglesCalculator.GetHeading(enemyPosition, robotPosition);
+            return storage.Engage.TargetHeading = heading.AddAngle(diff * GetSpread(enemy.Velocity));
         }
 
-        private double GetHeadingToTarget(DoublePoint robotPosition, DoublePoint enemyPosition, EnemyData enemy)
+        private double GetSpread(double velocity)
+        {
+            var random = storage.Engage.Random.NextDouble() +
+                         storage.Engage.Random.NextDouble() +
+                         storage.Engage.Random.NextDouble() +
+                         storage.Engage.Random.NextDouble();
+            return Math.Abs(velocity) < Rules.MAX_VELOCITY / 2 ? random / 2 : Math.Abs(random / 2 - 1);
+        }
+
+        private double GetHeadingDiffToTarget(DoublePoint robotPosition, DoublePoint enemyPosition, EnemyData enemy)
         {
             var heading = anglesCalculator.GetHeading(robotPosition, enemyPosition);
             if (Math.Abs(enemy.Velocity) < 1)
             {
-                return heading.AddAngle(180);
+                return 0;
             }
 
             var angleB = anglesCalculator.GetHeadingDiff(heading, enemy.Heading);
@@ -56,13 +70,12 @@
                 var sideA = Math.Abs((distance * sinA) / sinC);
                 var turnsToHit = sideA / enemy.Velocity;
                 var projectedHeading = enemy.Heading.AddAngle(rotation * turnsToHit / 2);
-                var projectedVelocity = enemy.Velocity > (Rules.MAX_VELOCITY * 2) ? enemy.Velocity * Settings.Default.TargetSpeedAdjust : enemy.Velocity;
+                var projectedVelocity = Math.Abs(enemy.Velocity) > (Rules.MAX_VELOCITY / 2) ? enemy.Velocity * Settings.Default.TargetSpeedAdjust : enemy.Velocity;
                 var newAngleB = anglesCalculator.GetHeadingDiff(heading, projectedHeading);
                 sinA = (projectedVelocity * newAngleB.Sin()) / Rules.GetBulletSpeed(storage.Engage.BulletPower);
             }
 
-            heading = heading.AddAngle(sinA.Asin());
-            return heading.AddAngle(180);
+            return sinA.Asin();
         }
     }
 }
