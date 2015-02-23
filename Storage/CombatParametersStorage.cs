@@ -17,5 +17,7 @@
         public MovementParameters Movement { get; set; }
 
         public bool CombatEnded { get; set; }
+
+        public long LastFired { get; set; }
     }
 }

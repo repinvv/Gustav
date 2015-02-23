@@ -17,7 +17,5 @@
         public double TargetHeading { get; set; }
 
         public Random Random { get; set; }
-
-        public long LastFired { get; set; }
     }
 }

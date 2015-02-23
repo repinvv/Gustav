@@ -31,9 +31,10 @@
                 rates = GetRates();
             }
 
-            if (storage.Robot.Time - storage.Engage.LastFired > Settings.Default.MaxInactivity)
+            if (storage.Robot.Time - storage.LastFired > Settings.Default.MaxInactivity)
             {
                 rates.BulletPower = Rules.MIN_BULLET_POWER;
+                storage.LastFired = storage.Robot.Time;
             }
 
             return rates;

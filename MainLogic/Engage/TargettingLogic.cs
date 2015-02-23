@@ -33,7 +33,7 @@
                 if (storage.Engage.Random.NextDouble() < save)
                 {
                     rates.BulletPower = storage.Engage.BulletPower;
-                    storage.Engage.LastFired = storage.Robot.Time;
+                    storage.LastFired = storage.Robot.Time;
                 }
             }
 
