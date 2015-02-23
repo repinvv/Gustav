@@ -78,10 +78,10 @@
     </Compile>
     <Compile Include="Resolver.cs" />
     <Compile Include="MathServices\AnglesCalculator.cs" />
-    <Compile Include="Position\EnemyData.cs" />
+    <Compile Include="Storage\EnemyData.cs" />
     <Compile Include="Storage\EnemyDataStorage.cs" />
     <Compile Include="Runner.cs" />
-    <Compile Include="Position\PositionRegister.cs" />
+    <Compile Include="Storage\PositionRegister.cs" />
     <Compile Include="Storage\ModeSelector.cs" />
   </ItemGroup>
   <ItemGroup>

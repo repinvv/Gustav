@@ -63,7 +63,9 @@
         {
             lock (sync)
             {
-                return !enemy.Dead && storage.Robot.Time - enemy.LastSeen < Settings.Default.ScanExpiration;
+                return !storage.Robot.Teammates.Contains(enemy.Name) 
+                    && !enemy.Dead 
+                    && storage.Robot.Time - enemy.LastSeen < Settings.Default.ScanExpiration;
             }
         }
 

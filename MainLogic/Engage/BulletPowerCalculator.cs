@@ -24,6 +24,7 @@
             if (enemy.Distance > maxFireDistanceSelector.GetMaxFireDistance(enemy))
             {
                 storage.Engage.BulletPower = Rules.MIN_BULLET_POWER;
+                return;
             }
 
             var distanceReduction = (enemy.Distance - Settings.Default.MaxPowerDistance)/Settings.Default.DistanceReductionRate;

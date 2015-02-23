@@ -43,7 +43,7 @@
                 range = Settings.Default.CloseUpRange;
             }
 
-            if (Math.Abs(enemy.Distance - range) > Settings.Default.StepDistance)
+            if (Math.Abs(enemy.Distance - range) > Settings.Default.StepDistance / 2)
             {
                 var destination = PullRange(enemy, range);
                 if (helper.DestinationValid(destination))

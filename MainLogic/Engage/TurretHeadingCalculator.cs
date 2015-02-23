@@ -48,7 +48,9 @@
                          storage.Engage.Random.NextDouble() +
                          storage.Engage.Random.NextDouble() +
                          storage.Engage.Random.NextDouble();
-            return Math.Abs(velocity) < Rules.MAX_VELOCITY / 2 ? random / 2 : (1 - Math.Abs(random / 2 - 1));
+            return Math.Abs(velocity) < Rules.MAX_VELOCITY / 2
+                ? 1 - Settings.Default.TargettingDeviation * (random / 2 - 1)
+                : 1 - Math.Abs(Settings.Default.TargettingDeviation * (random / 2 - 1));
         }
 
         private double GetHeadingDiffToTarget(DoublePoint robotPosition, DoublePoint enemyPosition, EnemyData enemy)

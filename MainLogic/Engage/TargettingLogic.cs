@@ -12,12 +12,14 @@
         private readonly CombatParametersStorage storage;
         private readonly TurretHeadingCalculator turretHeadingCalculator;
         private readonly AnglesCalculator anglesCalculator;
+        private readonly MaxFireDistanceSelector maxFireDistanceSelector;
 
-        public TargettingLogic(CombatParametersStorage storage, TurretHeadingCalculator turretHeadingCalculator, AnglesCalculator anglesCalculator)
+        public TargettingLogic(CombatParametersStorage storage, TurretHeadingCalculator turretHeadingCalculator, AnglesCalculator anglesCalculator, MaxFireDistanceSelector maxFireDistanceSelector)
         {
             this.storage = storage;
             this.turretHeadingCalculator = turretHeadingCalculator;
             this.anglesCalculator = anglesCalculator;
+            this.maxFireDistanceSelector = maxFireDistanceSelector;
         }
 
         public void DetermineTargettingRates(Rates rates, EnemyData enemy)
@@ -27,7 +29,12 @@
             var miss = Math.Abs(diff.Sin() * enemy.Distance);
             if (miss < Settings.Default.TargettingTolerance && Math.Abs(storage.Robot.GunHeat) < Settings.Default.ComparisionTolerance)
             {
-                rates.BulletPower = storage.Engage.BulletPower;
+                var save = enemy.Distance > maxFireDistanceSelector.GetMaxFireDistance(enemy) ? Settings.Default.LongDistanceSave : Settings.Default.BattleSave;
+                if (storage.Engage.Random.NextDouble() < save)
+                {
+                    rates.BulletPower = storage.Engage.BulletPower;
+                    storage.Engage.LastFired = storage.Robot.Time;
+                }
             }
 
             var nextHeading = turretHeadingCalculator.GetNextTurnHeading(enemy);
@@ -36,20 +43,20 @@
 
             if (neededRate < 0)
             {
-                UpdateRatesNegative(neededRate, rates);
+                UpdateRatesNegative(neededRate, rates, enemy);
             }
             else
             {
-                UpdateRatesPositive(neededRate, rates);
+                UpdateRatesPositive(neededRate, rates, enemy);
             }
 
         }
 
-        private void UpdateRatesNegative(double neededRate, Rates rates)
+        private void UpdateRatesNegative(double neededRate, Rates rates, EnemyData enemy)
         {
-            if (neededRate >= -Rules.GUN_TURN_RATE)
+            if (neededRate >= -Rules.GUN_TURN_RATE || enemy.Distance < storage.Robot.Height * 1.5)
             {
-                rates.TurretTurn = neededRate;
+                rates.TurretTurn = Math.Max(neededRate, -Rules.GUN_TURN_RATE);
                 return;
             }
 
@@ -63,11 +70,11 @@
             rates.TurretTurn = -Rules.GUN_TURN_RATE;
         }
 
-        private void UpdateRatesPositive(double neededRate, Rates rates)
+        private void UpdateRatesPositive(double neededRate, Rates rates, EnemyData enemy)
         {
-            if (neededRate <= Rules.GUN_TURN_RATE)
+            if (neededRate <= Rules.GUN_TURN_RATE || enemy.Distance < storage.Robot.Height * 1.5)
             {
-                rates.TurretTurn = neededRate;
+                rates.TurretTurn = Math.Min(neededRate, Rules.GUN_TURN_RATE);
                 return;
             }
 

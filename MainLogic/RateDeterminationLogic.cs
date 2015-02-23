@@ -2,7 +2,9 @@
 {
     using System;
     using Gustav.MainLogic.Engage;
+    using Gustav.Properties;
     using Gustav.Storage;
+    using Robocode;
 
     internal class RateDeterminationLogic
     {
@@ -27,6 +29,11 @@
             while (rates == null)
             {
                 rates = GetRates();
+            }
+
+            if (storage.Robot.Time - storage.Engage.LastFired > Settings.Default.MaxInactivity)
+            {
+                rates.BulletPower = Rules.MIN_BULLET_POWER;
             }
 
             return rates;
