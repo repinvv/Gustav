@@ -75,8 +75,8 @@
 
         public DoublePoint CreateDestination(double target, double maneuverAngle)
         {
-            var distance = Settings.Default.StepDistance + storage.Movement.Random.FourDouble() * Settings.Default.StepDeviate;
-            var angle = target + (-maneuverAngle + storage.Movement.Random.FourDouble() * 2 * maneuverAngle);
+            var distance = Settings.Default.StepDistance + storage.Movement.Random.GaussDouble() * Settings.Default.StepDeviate;
+            var angle = target + (-maneuverAngle + storage.Movement.Random.GaussDouble() * 2 * maneuverAngle);
             return anglesCalculator.GetCoordinatesByAngle(distance, angle);
         }
 

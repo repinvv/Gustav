@@ -44,7 +44,7 @@
 
         private double GetSpread(double velocity)
         {
-            var random = storage.Engage.Random.FourDouble();
+            var random = storage.Engage.Random.GaussDouble();
             return Math.Abs(velocity) < Rules.MAX_VELOCITY / 2
                 ? 1 - Settings.Default.TargettingDeviation * (random * 2 - 1)
                 : 1 - Math.Abs(Settings.Default.TargettingDeviation * (random * 2 - 1));

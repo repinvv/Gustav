@@ -1,6 +1,8 @@
 ﻿namespace Gustav.MathServices
 {
     using System;
+    using System.Linq;
+    using Gustav.Properties;
 
     internal static class MathExtension
     {
@@ -43,9 +45,15 @@
             return Math.Asin(sin).ToDegrees();
         }
 
-        public static double FourDouble(this Random random)
+        public static double GaussDouble(this Random random)
         {
-            return (random.NextDouble() + random.NextDouble() + random.NextDouble() + random.NextDouble()) / 4;
+            double a = 0;
+            for (int i = 0; i < Settings.Default.GaussNumber; i++)
+            {
+                a = a + random.NextDouble();
+            }
+
+            return a / Settings.Default.GaussNumber;
         }
     }
 }
